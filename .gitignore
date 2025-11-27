@@ -1,0 +1,30 @@
+# ==== Android Studio / IntelliJ ====
+*.iml
+.idea/
+**/.idea/
+.gradle/
+**/.gradle/
+local.properties
+
+# ==== Carpetas de compilación (todas las apps) ====
+/build/
+**/build/
+.cxx/
+**/.cxx/
+.externalNativeBuild/
+**/.externalNativeBuild/
+
+# ==== Capturas y otros ====
+captures/
+**/captures/
+
+# ==== Archivos de sistema ====
+.DS_Store
+Thumbs.db
+
+# ==== Logs ====
+*.log
+
+# ==== Keystores (no subas tus claves) ====
+*.jks
+*.keystore
