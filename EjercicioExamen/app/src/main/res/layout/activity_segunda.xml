@@ -18,4 +18,59 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUno"
+        android:layout_width="103dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="60dp"
+        android:text="Uno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/tvDos"
+        android:layout_width="113dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="24dp"
+        android:text="Dos"
+        app:layout_constraintEnd_toEndOf="@+id/tvUno"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvUno"
+        app:layout_constraintTop_toBottomOf="@+id/tvUno" />
+
+    <TextView
+        android:id="@+id/tvRB"
+        android:layout_width="150dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="156dp"
+        android:text="RB Checkeado:"
+        app:layout_constraintEnd_toEndOf="@+id/tvDos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvDos"
+        app:layout_constraintTop_toBottomOf="@+id/tvDos" />
+
+    <TextView
+        android:id="@+id/tvSpinner"
+        android:layout_width="154dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="64dp"
+        android:text="tvSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/tvRB"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvRB"
+        app:layout_constraintTop_toBottomOf="@+id/tvRB" />
+
+    <Button
+        android:id="@+id/btnCambiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="CAMBIAR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSpinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>
