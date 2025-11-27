@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Unidad2_Casa"
 include(":app")
-//include(":demoabriractivity")
+include(":demoabriractivity")
 include(":demotextinputlayout")
 include(":demotextview")
 include(":minicalculadora")

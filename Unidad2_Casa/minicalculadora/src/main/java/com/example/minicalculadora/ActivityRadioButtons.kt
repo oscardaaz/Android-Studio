@@ -38,7 +38,7 @@ class ActivityRadioButtons : AppCompatActivity() {
         val n2 = tilRbNum2.editText?.text.toString().toDouble()
 
         // Opcion 1
-//       val resultado = StringBuilder()
+//       val resultado = StringBuilder()s
 //        if (rbSumar.isChecked) {
 //            resultado.append("Suma: ${n1 + n2} ")
 //        }
