@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mini Calculadora</string>
+    <string-array name="operaciones">
+        <item>Seleccione una operacion…</item>
+        <item>Sumar</item>
+        <item>Restar</item>
+    </string-array>
+</resources>

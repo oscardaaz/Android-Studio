@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <ScrollView
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+
+        android:id="@+id/layout"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+
+        tools:context=".MainActivity">
+
+
+        <TextView
+
+            android:id="@+id/tvEjemplos"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:background="#5E6B93"
+            android:fontFamily="@font/jetbrains_mono"
+            android:text="Ejemplos"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textColorLink="#635C5C"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+
+        <TextView
+
+            android:id="@+id/textView1"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="1. Cambiar color"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162"
+            android:textStyle="bold" />
+
+
+        <TextView
+
+            android:id="@+id/text_color"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Texto color Material Indigo 500"
+            android:textColor="#3F51B5"/>
+
+
+        <TextView
+
+            android:id="@+id/textView2"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="2. Cambiar tamaño"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162" />
+
+
+
+        <TextView
+
+            android:id="@+id/text_size_14sp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Tamaño de 14sp" />
+
+
+        <TextView
+
+            android:id="@+id/text_size_16sp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Tamaño de 16sp"
+            android:textSize="16sp" />
+
+
+        <TextView
+
+            android:id="@+id/text_size_20sp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Tamaño de 20sp"
+            android:textSize="20sp" />
+
+
+        <TextView
+
+            android:id="@+id/text_size_24sp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Tamaño de 24sp"
+            android:textSize="24sp" />
+
+
+        <TextView
+
+            android:id="@+id/textView3"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/rocknroll_one"
+            android:text="3. Cambiar estilo de fuente"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162" />
+
+
+
+        <TextView
+
+            android:id="@+id/text_style_normal"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Estilo normal"/>
+
+
+        <TextView
+
+            android:id="@+id/text_style_bold"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Estilo en negrita"
+            android:textStyle="bold" />
+
+
+        <TextView
+
+            android:id="@+id/text_style_italic"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Estilo cursiva"
+            android:textStyle="italic" />
+
+
+        <TextView
+
+            android:id="@+id/text_style_combination"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="Estilos cursiva y negrita"
+            android:textStyle="bold|italic" />
+
+
+        <TextView
+
+            android:id="@+id/textView4"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="4. Cambiar tipo de fuente"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162" />
+
+
+        <TextView
+
+            android:id="@+id/typeface_sans"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="sans-serif"
+            android:linksClickable="true"
+            android:text="Tipo de fuente sans"
+            android:typeface="sans" />
+
+
+        <TextView
+
+            android:id="@+id/typeface_serif"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="sans-serif"
+            android:text="Tipo de fuente serif"
+            android:typeface="serif" />
+
+
+        <TextView
+
+            android:id="@+id/typeface_monospace"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="sans-serif"
+            android:text="Tipo de fuente monospace"
+            android:typeface="monospace" />
+
+
+        <TextView
+
+            android:id="@+id/textView5"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="5. Convertir urls en links clickeables"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162" />
+
+
+        <TextView
+
+            android:id="@+id/autolink_url"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:text=" https://developer.android.com"
+            android:textColorLink="#FF0000" />
+
+
+        <TextView
+
+            android:id="@+id/textView6"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="6. Convertir a mayúsculas"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162" />
+
+
+        <TextView
+
+            android:id="@+id/text_all_caps"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="www.google.com"
+            android:textAllCaps="true" />
+
+
+        <TextView
+
+            android:id="@+id/textView7"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="7. Cambiar familia tipográfica"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#304FFE"
+            android:textColorLink="#C51162" />
+
+
+        <TextView
+
+            android:id="@+id/font_family1"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="sans-serif-condensed-medium"
+
+            android:text="Sans Serif Condensed Medium" />
+
+
+        <TextView
+
+            android:id="@+id/font_family2"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/stint_ultra_expanded"
+
+            android:text="Serif Monospace " />
+
+
+        <TextView
+
+            android:id="@+id/font_family3"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/aclonica"
+            android:text="Casual" />
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
