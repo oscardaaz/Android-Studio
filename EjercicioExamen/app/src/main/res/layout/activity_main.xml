@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:text="Button"
+        android:text="Abrir"
         app:icon="@drawable/ic_btn_abrir"
         app:iconGravity="end"
         app:layout_constraintEnd_toEndOf="parent"

@@ -43,8 +43,8 @@
 
     <TextView
         android:id="@+id/tvRB"
-        android:layout_width="150dp"
-        android:layout_height="24dp"
+        android:layout_width="183dp"
+        android:layout_height="36dp"
         android:layout_marginTop="156dp"
         android:text="RB Checkeado:"
         app:layout_constraintEnd_toEndOf="@+id/tvDos"
