@@ -14,16 +14,16 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var btnCb1 : CheckBox
-    private lateinit var btnCb2 : CheckBox
-    private lateinit var btnRB : Button
-    private lateinit var rb1 : RadioButton
-    private lateinit var rb2 : RadioButton
-    private lateinit var rb3 : RadioButton
-    private lateinit var spinner : Spinner
-    private lateinit var tvMain : TextView
-    private lateinit var btnAbrir : Button
-    private lateinit var rGroup : RadioGroup
+    private lateinit var btnCb1: CheckBox
+    private lateinit var btnCb2: CheckBox
+    private lateinit var btnRB: Button
+    private lateinit var rb1: RadioButton
+    private lateinit var rb2: RadioButton
+    private lateinit var rb3: RadioButton
+    private lateinit var spinner: Spinner
+    private lateinit var tvMain: TextView
+    private lateinit var btnAbrir: Button
+    private lateinit var rGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +40,14 @@ class MainActivity : AppCompatActivity() {
         spinner = findViewById(R.id.spinner)
         tvMain = findViewById(R.id.tvMain)
         btnRB.setOnClickListener {
-            Toast.makeText(this,"Pulsado RB", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Pulsado RB", Toast.LENGTH_SHORT).show()
             Log.d("Mi App", "Pulsado RB")
 
             val resultado = if (rb1.isChecked) {
                 "1"
-            }else if (rb2.isChecked){
+            } else if (rb2.isChecked) {
                 "2"
-            }else {
+            } else {
                 "3"
             }
             tvMain.text = resultado
@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SegundaActivity::class.java)
             intent.putExtra("CB1", btnCb1.isChecked)
             intent.putExtra("CB2", btnCb2.isChecked)
-            intent.putExtra("RB", rGroup.checkedRadioButtonId)
+            //intent.putExtra("RB", rGroup.checkedRadioButtonId)
+            intent.putExtra("RBID", rGroup.id)
             intent.putExtra("SPINNER", spinner.selectedItemPosition)
             startActivity(intent)
         }

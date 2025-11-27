@@ -13,29 +13,29 @@ import androidx.core.view.WindowInsetsCompat
 class SegundaActivity : AppCompatActivity() {
 
     private lateinit var tvUno: TextView
-    private lateinit var tvDos : TextView
-    private lateinit var tvRB : TextView
-    private lateinit var tvSP : TextView
-    private lateinit var btnCambiar : Button
+    private lateinit var tvDos: TextView
+    private lateinit var tvRB: TextView
+    private lateinit var tvSP: TextView
+    private lateinit var btnCambiar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_segunda)
 
-        tvUno  = findViewById(R.id.tvUno)
-        tvDos  = findViewById(R.id.tvDos)
-        tvRB  = findViewById(R.id.tvRB)
-        tvSP  = findViewById(R.id.tvSpinner)
+        tvUno = findViewById(R.id.tvUno)
+        tvDos = findViewById(R.id.tvDos)
+        tvRB = findViewById(R.id.tvRB)
+        tvSP = findViewById(R.id.tvSpinner)
         btnCambiar = findViewById(R.id.btnCambiar)
 
-        var cb1 = intent.getBooleanExtra("CB1",false)
-        var cb2 = intent.getBooleanExtra("CB2",false)
+        var cb1 = intent.getBooleanExtra("CB1", false)
+        var cb2 = intent.getBooleanExtra("CB2", false)
 
         tvUno.text = if (cb1 == true) "Uno: Checked"
-                    else "Uno: Unchecked"
+        else "Uno: Unchecked"
 
         tvDos.text = if (cb2 == true) "Dos: Checked"
-            else "Dos: Unchecked"
+        else "Dos: Unchecked"
 
         var rbId = intent.getIntExtra("RB",-1)
         tvRB.text = when (rbId){
@@ -45,8 +45,8 @@ class SegundaActivity : AppCompatActivity() {
             else -> ""
         }
 
-        val spID = intent.getIntExtra("SPINNER",-1)
-        tvSP.text = when (spID){
+        val spID = intent.getIntExtra("SPINNER", -1)
+        tvSP.text = when (spID) {
             0 -> "Spinner: Uno"
             1 -> "Spinner: Dos"
             2 -> "Spinner: Tres"
