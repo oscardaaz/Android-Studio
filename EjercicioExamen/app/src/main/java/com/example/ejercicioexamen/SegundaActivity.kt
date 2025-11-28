@@ -45,14 +45,6 @@ class SegundaActivity : AppCompatActivity() {
             else -> ""
         }
 
-        val spID = intent.getIntExtra("SPINNER", -1)
-        tvSP.text = when (spID) {
-            0 -> "Spinner: Uno"
-            1 -> "Spinner: Dos"
-            2 -> "Spinner: Tres"
-            else -> ""
-        }
-
         btnCambiar.setOnClickListener {
             val aux = tvUno.text
             tvUno.text = tvDos.text

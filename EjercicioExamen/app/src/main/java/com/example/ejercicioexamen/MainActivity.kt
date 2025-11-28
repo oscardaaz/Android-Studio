@@ -65,8 +65,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SegundaActivity::class.java)
             intent.putExtra("CB1", btnCb1.isChecked)
             intent.putExtra("CB2", btnCb2.isChecked)
-            //intent.putExtra("RB", rGroup.checkedRadioButtonId)
-            intent.putExtra("RBID", rGroup.id)
+            intent.putExtra("RB", rGroup.checkedRadioButtonId)
             intent.putExtra("SPINNER", spinner.selectedItemPosition)
             startActivity(intent)
         }
