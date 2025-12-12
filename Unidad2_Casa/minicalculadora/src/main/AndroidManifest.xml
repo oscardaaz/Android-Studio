@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Unidad2">
         <activity
+            android:name=".prueba"
+            android:exported="false" />
+        <activity
             android:name=".ActivitySpinner"
             android:exported="false" />
         <activity
