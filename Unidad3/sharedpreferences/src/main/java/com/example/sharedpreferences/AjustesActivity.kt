@@ -18,11 +18,11 @@ class AjustesActivity : AppCompatActivity() {
         binding = ActivityAjustesBinding.inflate(layoutInflater)
         enableEdgeToEdge()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
+        }*/
         // Leer el fichero de preferencias
         val prefs = getSharedPreferences("MisPrefs", Context.MODE_PRIVATE)
 
@@ -36,7 +36,8 @@ class AjustesActivity : AppCompatActivity() {
             prefs.putBoolean("oscuro", binding.switch2.isChecked)
             prefs.putInt("tam_letra", binding.editTextText.toString().toInt())
             prefs.apply()
+            finish()
         }
-        finish()
-    }
+
+    }//Fin de onCreate
 }
