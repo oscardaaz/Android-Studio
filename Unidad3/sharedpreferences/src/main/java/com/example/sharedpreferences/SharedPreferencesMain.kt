@@ -19,20 +19,21 @@ class SharedPreferencesMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d("Miapp","onCreate")
         binding = ActivitySharedPreferencesMainBinding.inflate(layoutInflater)
-        //enableEdgeToEdge()
+        enableEdgeToEdge()
         setContentView(binding.root)
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }*/
-
-        //TODO Arreglar algo aqui, explota al ir a la segunda actividad.
-        binding.button2.setOnClickListener {
-            startActivity(Intent(
-                this ,AjustesActivity::class.java))
         }
 
+        // CORRECCIÓN: Agregar leerPreferencias() aquí también para aplicar los cambios al iniciar
+        //leerPreferencias()
+
+        binding.button2.setOnClickListener {
+            startActivity(Intent(this, AjustesActivity::class.java))
+        }
     }
 
     override fun onResume() {
@@ -44,17 +45,15 @@ class SharedPreferencesMain : AppCompatActivity() {
     private fun leerPreferencias() {
         val prefs = getSharedPreferences("MisPrefs", Context.MODE_PRIVATE)
         val oscuro = prefs.getBoolean("oscuro", false)
-        val tamLetra = prefs.getInt("tam_letra", 12)
+        val tamLetra = prefs.getInt("tam_letra", 12).toString()
 
         binding.texto.textSize = tamLetra.toFloat()
+
+        // Aplicar el tema inmediatamente
         if (oscuro) {
-            // Establecemos el modo noche en la aplicación
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
-            // Establecemos el modo día en la aplicación
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
-
-
 }
