@@ -59,57 +59,55 @@
         android:id="@+id/btnINS"
         android:layout_width="80dp"
         android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
         android:text="INS"
         app:layout_constraintBottom_toTopOf="@+id/tvOutput"
-        app:layout_constraintEnd_toStartOf="@+id/btnACT"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/btnACT"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="12dp"
         android:text="ACT"
         app:layout_constraintBottom_toTopOf="@+id/tvOutput"
-        app:layout_constraintEnd_toStartOf="@+id/btnUPD"
+        app:layout_constraintStart_toEndOf="@+id/btnINS"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
-        app:layout_constraintVertical_bias="0.311" />
-
-    <Button
-        android:id="@+id/btnUPD"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="12dp"
-        android:text="UPD"
-        app:layout_constraintBottom_toTopOf="@+id/tvOutput"
-        app:layout_constraintEnd_toStartOf="@+id/btnDEL"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/btnDEL"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="24dp"
         android:text="DEL"
         app:layout_constraintBottom_toTopOf="@+id/tvOutput"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCON"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnCON"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
+        android:text="CON"
+        app:layout_constraintBottom_toTopOf="@+id/tvOutput"
+        app:layout_constraintStart_toEndOf="@+id/btnACT"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
         android:id="@+id/tvOutput"
         android:layout_width="113dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="244dp"
         android:text="Output"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
