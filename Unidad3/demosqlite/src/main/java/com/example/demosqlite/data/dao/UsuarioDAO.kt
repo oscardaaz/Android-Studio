@@ -9,6 +9,6 @@ interface UsuarioDAO {
     fun leerUsuarioPorId(id: Int) : Usuario?
     fun actualizarUsuario(usuario: Usuario) : Int
     fun borrarUsuario(id : Int) : Int
-    fun borrarTodosLosUsuarios(): Int
+
 
 }

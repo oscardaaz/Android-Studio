@@ -55,14 +55,60 @@ class UsuarioDAOImpl(
     }
 
     override fun actualizarUsuario(usuario: Usuario): Int {
-        TODO("Not yet implemented")
+        if (usuario.id == null) return 0 // No se pueden actualizar sin id
+
+        if (!existeUsuario(usuario.id)) return 0
+
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(UsuariosSQLiteHelper.COLUMN_NOMBRE, usuario.nombre)
+            put(UsuariosSQLiteHelper.COLUMN_EMAIL, usuario.email)
+        }
+
+        val filasActualizadas = db.update (
+            UsuariosSQLiteHelper.TABLE_NAME,
+            values,
+            "${UsuariosSQLiteHelper.COLUMN_ID} = ?",
+            arrayOf(usuario.id.toString())
+        )
+        //UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?
+        db.close()
+        return filasActualizadas
+    }
+
+    private fun existeUsuario(id: Int): Boolean {
+        val db = dbHelper.readableDatabase
+
+        val query = """
+            SELECT ${UsuariosSQLiteHelper.COLUMN_ID} 
+            FROM ${UsuariosSQLiteHelper.TABLE_NAME}
+            WHERE ${UsuariosSQLiteHelper.COLUMN_ID} = ?
+        """.trimIndent()
+
+        val cursor = db.rawQuery(query,arrayOf(id.toString()))
+        val existe = cursor.count > 0
+
+        cursor.close()
+        db.close()
+        return existe
     }
 
     override fun borrarUsuario(id: Int): Int {
-        TODO("Not yet implemented")
+
+        if (!existeUsuario(id)) return 0
+
+        val db = dbHelper.writableDatabase
+
+        val filasBorradas = db.delete (
+            UsuariosSQLiteHelper.TABLE_NAME,
+            "${UsuariosSQLiteHelper.COLUMN_ID} = ?",
+            arrayOf(id.toString())
+        )
+
+        //DELETE * FROM usuarios WHERE id = ?
+        db.close()
+        return filasBorradas
     }
 
-    override fun borrarTodosLosUsuarios(): Int {
-        TODO("Not yet implemented")
-    }
+
 }

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         configurarListeners()
 
-        //actualizarListaUsuarios()
+        actualizarListaUsuarios()
 
     } // Fin del onCreate
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             binding.tvOutput.text = "Tabla vacía"
         } else {
             val textoTabla = StringBuilder()
-            for (usuario in usuarios){
+            for (usuario in usuarios) {
                 textoTabla.append("$usuario\n")
             }
             binding.tvOutput.text = textoTabla.toString()
@@ -66,18 +66,68 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarEliminacion() {
-        TODO("Not yet implemented")
+        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
+
+        // Comprobar si esta vacio
+        if (idTexto.isEmpty()) {
+            mostrarMensaje("Introduce id para eliminar")
+            return
+        }
+
+        // Si no esta vacio, comprobamos que sea un número valido.
+        val id = idTexto.toIntOrNull()
+        if (id == null) {
+            mostrarMensaje("ID tiene que ser un nº ")
+            return
+        }
+
+        val filasEliminadas = operaciones.borrarUsuario(id)
+        if (filasEliminadas > 0) {
+            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
+        } else {
+            mostrarMensaje("No se ha podido eliminar")
+        }
     }
 
     private fun manejarActualizacion() {
-        TODO("Not yet implemented")
+        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
+
+        // Comprobar si esta vacio
+        if (idTexto.isEmpty()) {
+            mostrarMensaje("Introduce id para actualizar")
+            return
+        }
+
+        // Si no esta vacio, comprobamos que sea un número valido.
+        val id = idTexto.toIntOrNull()
+        if (id == null) {
+            mostrarMensaje("ID tiene que ser un nº ")
+            return
+        }
+        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
+        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+
+        // TODO: Validar campos nombre e email.
+        val usuarioActualizado = Usuario(
+            id = id,
+            nombre,
+            email = email
+        )
+        val filasActualizadas = operaciones.actualizarUsuario(usuarioActualizado)
+        if (filasActualizadas > 0) {
+            mostrarMensaje("Actualizacion correcta"); limpiarCampos(); actualizarListaUsuarios()
+        } else {
+            mostrarMensaje("No se ha podido actualizar")
+        }
+
+
     }
 
     private fun manejarInsercion() {
         val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
         val email = binding.textInputLayoutNombre.editText?.text.toString().trim()
 
-        if (nombre.isEmpty() || email.isEmpty()){
+        if (nombre.isEmpty() || email.isEmpty()) {
             mostrarMensaje("Completa los campos nombre & email")
             return
         }
@@ -90,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         if (idGenerado != -1L) {
             mostrarMensaje("Usuario insertado con id: $idGenerado")
             limpiarCampos()
-            //actualizarListaUsuarios();
+            actualizarListaUsuarios()
         } else {
             mostrarMensaje("Error al insertar usuario")
             limpiarCampos()
@@ -113,6 +163,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 } // Fin de la clase
+
+
 
 
 
