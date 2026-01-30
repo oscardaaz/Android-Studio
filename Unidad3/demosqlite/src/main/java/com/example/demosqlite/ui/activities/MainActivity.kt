@@ -1,11 +1,13 @@
 package com.example.demosqlite.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.demosqlite.data.dao.UsuarioDAOImpl
 import com.example.demosqlite.data.database.UsuariosSQLiteHelper
 import com.example.demosqlite.data.model.Usuario
 import com.example.demosqlite.databinding.ActivityMainBinding
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -38,14 +40,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarConsulta() {
-        val idTexto = binding.textInputLayoutNombre.editText?.text.toString().trim()
+        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
 
         //CASO 1
         if (idTexto.isEmpty()) {
-            actualizarListaUsuarios()
-            mostrarMensaje("Mostrando todos los usuarios....")
-            return
+
+            val usuarios = operaciones.leerUsuarios()
+
+        val texto = if (usuarios.isEmpty()) {
+            "No hay usuarios"
+        } else {
+            val textoTabla = StringBuilder()
+            for (usuario in usuarios) {
+                textoTabla.append("$usuario\n")
+            }
+            textoTabla.toString()
         }
+
+        mostrarMensaje("Mostrando usuarios")
+        val intent = Intent(this, SecondActivity::class.java)
+        intent.putExtra("LISTA", texto)
+        startActivity(intent)
+
+        return
+        }
+        if (!idTexto.isEmpty()){
+            val numero = idTexto.toIntOrNull()
+            //val usuario = operaciones.leerUsuarioPorId(numero)
+        }
+
+
 
         //CASO 2
     }
@@ -125,7 +149,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun manejarInsercion() {
         val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
-        val email = binding.textInputLayoutNombre.editText?.text.toString().trim()
+        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
         if (nombre.isEmpty() || email.isEmpty()) {
             mostrarMensaje("Completa los campos nombre & email")

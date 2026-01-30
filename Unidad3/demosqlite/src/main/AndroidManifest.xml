@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Unidad3">
         <activity
+            android:name=".ui.activities.SecondActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -51,7 +51,26 @@ class UsuarioDAOImpl(
     }
 
     override fun leerUsuarioPorId(id: Int): Usuario? {
-        TODO("Not yet implemented")
+
+        val db= dbHelper.readableDatabase
+
+        val query = "SELECT * FROM ${UsuariosSQLiteHelper.TABLE_NAME} WHERE "
+        // En SQL seria --> SELECT * FROM usuarios
+
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToNext()){
+            do {
+                val id = cursor.getInt(0)
+                val nombre = cursor.getString(1)
+                val email = cursor.getString(2)
+                listaUsuarios.add(Usuario(id,nombre,email))
+            }while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return usuario
     }
 
     override fun actualizarUsuario(usuario: Usuario): Int {
