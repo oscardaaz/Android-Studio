@@ -22,7 +22,6 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
         val toolbar = findViewById<MaterialToolbar>(R.id.cbMaterialToolbar)
 
-
         toolbar.setNavigationOnClickListener {
             //finish()
             onBackPressedDispatcher.onBackPressed()
@@ -31,8 +30,9 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val texto = intent.getStringExtra("LISTA")
-        binding.textView.text = texto
+        val datos = intent.getStringExtra("DATOS")
+        binding.textView.text = datos
 
     }
+
 }

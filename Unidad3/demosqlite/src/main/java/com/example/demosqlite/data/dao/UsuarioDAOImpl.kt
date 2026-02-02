@@ -50,13 +50,11 @@ class UsuarioDAOImpl(
         return listaUsuarios
     }
 
-    override fun leerUsuarioPorId(id: Int): Usuario? {
-
+    override fun leerUsuarioPorId(id: Int): Usuario {
+        val listaUsuarios = mutableListOf<Usuario>()
         val db= dbHelper.readableDatabase
-
-        val query = "SELECT * FROM ${UsuariosSQLiteHelper.TABLE_NAME} WHERE "
+        val query = "SELECT * FROM ${UsuariosSQLiteHelper.TABLE_NAME} AS a WHERE a.id = $id"
         // En SQL seria --> SELECT * FROM usuarios
-
         val cursor = db.rawQuery(query, null)
 
         if (cursor.moveToNext()){
@@ -68,8 +66,10 @@ class UsuarioDAOImpl(
             }while (cursor.moveToNext())
         }
 
+        val usuario: Usuario = listaUsuarios.first()
         cursor.close()
         db.close()
+
         return usuario
     }
 

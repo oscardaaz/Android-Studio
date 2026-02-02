@@ -7,7 +7,6 @@ import com.example.demosqlite.data.dao.UsuarioDAOImpl
 import com.example.demosqlite.data.database.UsuariosSQLiteHelper
 import com.example.demosqlite.data.model.Usuario
 import com.example.demosqlite.databinding.ActivityMainBinding
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -47,28 +46,38 @@ class MainActivity : AppCompatActivity() {
 
             val usuarios = operaciones.leerUsuarios()
 
-        val texto = if (usuarios.isEmpty()) {
-            "No hay usuarios"
-        } else {
-            val textoTabla = StringBuilder()
-            for (usuario in usuarios) {
-                textoTabla.append("$usuario\n")
+            val texto = if (usuarios.isEmpty()) {
+                "No hay usuarios"
+            } else {
+                val textoTabla = StringBuilder()
+                for (usuario in usuarios) {
+                    textoTabla.append("$usuario\n")
+
+                }
+                textoTabla.toString()
             }
-            textoTabla.toString()
+
+            mostrarMensaje("Mostrando usuarios")
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("DATOS", texto)
+            startActivity(intent)
+            return
+
         }
 
-        mostrarMensaje("Mostrando usuarios")
-        val intent = Intent(this, SecondActivity::class.java)
-        intent.putExtra("LISTA", texto)
-        startActivity(intent)
+        // CASO 2, id introducido.
+        if (!idTexto.isEmpty()) {
 
-        return
-        }
-        if (!idTexto.isEmpty()){
-            val numero = idTexto.toIntOrNull()
-            //val usuario = operaciones.leerUsuarioPorId(numero)
-        }
+            val numero = idTexto.toInt()
+            val usuario = operaciones.leerUsuarioPorId(numero).toString()
 
+            mostrarMensaje("Mostrando usuario con id: $idTexto")
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("DATOS", usuario)
+            startActivity(intent)
+            return
+
+        }
 
 
         //CASO 2
