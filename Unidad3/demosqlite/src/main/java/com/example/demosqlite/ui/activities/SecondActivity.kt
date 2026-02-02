@@ -19,16 +19,21 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
-        val toolbar = findViewById<MaterialToolbar>(R.id.cbMaterialToolbar)
+       // setContentView(R.layout.activity_second)
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //val toolbar = findViewById<MaterialToolbar>(R.id.cbMaterialToolbar)
+        val toolbar = binding.cbMaterialToolbar
 
         toolbar.setNavigationOnClickListener {
             //finish()
             onBackPressedDispatcher.onBackPressed()
         }
+        //Se puede poner aqui o en el XML
+//        toolbar.title = "Lista de Usuarios"
+//        toolbar.subtitle = "Programacion Moviles"
 
-        binding = ActivitySecondBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val datos = intent.getStringExtra("DATOS")
         binding.textView.text = datos

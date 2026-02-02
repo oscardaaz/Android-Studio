@@ -69,13 +69,22 @@ class MainActivity : AppCompatActivity() {
         if (!idTexto.isEmpty()) {
 
             val numero = idTexto.toInt()
-            val usuario = operaciones.leerUsuarioPorId(numero).toString()
+            if (operaciones.existeUsuario(numero)) {
+                val usuario = operaciones.leerUsuarioPorId(numero).toString()
 
-            mostrarMensaje("Mostrando usuario con id: $idTexto")
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("DATOS", usuario)
-            startActivity(intent)
-            return
+                mostrarMensaje("Mostrando usuario con id: $idTexto")
+                val intent = Intent(this, SecondActivity::class.java)
+                intent.putExtra("DATOS", usuario)
+                startActivity(intent)
+                return
+            }else{
+                mostrarMensaje("El usuario con id: $idTexto ,no existe")
+                val intent = Intent(this, SecondActivity::class.java)
+                intent.putExtra("DATOS", "El usuario con id: $idTexto ,no existe")
+                startActivity(intent)
+                return
+            }
+
 
         }
 

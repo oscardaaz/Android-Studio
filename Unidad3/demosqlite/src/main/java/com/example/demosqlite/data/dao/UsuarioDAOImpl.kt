@@ -95,7 +95,8 @@ class UsuarioDAOImpl(
         return filasActualizadas
     }
 
-    private fun existeUsuario(id: Int): Boolean {
+    // Se puede poner private fun, estaba asi, pero la hago publica
+    fun existeUsuario(id: Int): Boolean {
         val db = dbHelper.readableDatabase
 
         val query = """

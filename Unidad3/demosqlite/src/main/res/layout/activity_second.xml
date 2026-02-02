@@ -22,8 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_atras"
-            app:title="Lista usuarios"
-            app:titleCentered="true" />
+            app:title="Lista Usuarios XML"
+            app:subtitle="Programacion Moviles XML"
+            app:titleCentered="true"
+            app:subtitleCentered="true"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
