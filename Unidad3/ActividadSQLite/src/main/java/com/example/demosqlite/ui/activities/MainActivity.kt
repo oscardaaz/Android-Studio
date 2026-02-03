@@ -32,19 +32,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun configurarListeners() {
         binding.btnINS.setOnClickListener { manejarInsercion() }
-       // binding.btnACT.setOnClickListener { manejarActualizacion() }
-        //binding.btnDEL.setOnClickListener { manejarEliminacion() }
-       // binding.btnCON.setOnClickListener { manejarConsulta() }
+        binding.btnACT.setOnClickListener { manejarActualizacion() }
+        binding.btnDEL.setOnClickListener { manejarEliminacion() }
+        binding.btnCON.setOnClickListener { manejarConsulta() }
 
     }
 
     private fun manejarConsulta() {
-        val idTexto = binding.textInputLayoutEmail.editText?.text.toString().trim()
+        val idEmail = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
         //CASO 1
-        if (idTexto.isEmpty()) {
+        if (idEmail.isEmpty()) {
 
-            val usuarios = operaciones.leerUsuarios()
+            val usuarios = operaciones.leerUsuariosOrdenadosPorNombre()
+            actualizarListaUsuarios()
 
             val texto = if (usuarios.isEmpty()) {
                 "No hay usuarios"
@@ -52,7 +53,6 @@ class MainActivity : AppCompatActivity() {
                 val textoTabla = StringBuilder()
                 for (usuario in usuarios) {
                     textoTabla.append("$usuario\n")
-
                 }
                 textoTabla.toString()
             }
@@ -66,21 +66,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         // CASO 2, id introducido.
-        if (!idTexto.isEmpty()) {
+        if (!idEmail.isEmpty()) {
 
-            val numero = idTexto.toInt()
-            if (operaciones.existeUsuario(numero)) {
-                val usuario = operaciones.leerUsuarioPorId(numero).toString()
+            if (operaciones.existeUsuario(idEmail)) {
+                val usuario = operaciones.leerUsuarioPorEmail(idEmail).toString()
 
-                mostrarMensaje("Mostrando usuario con id: $idTexto")
+                mostrarMensaje("Mostrando usuario con email: $idEmail")
                 val intent = Intent(this, SecondActivity::class.java)
                 intent.putExtra("DATOS", usuario)
                 startActivity(intent)
                 return
             }else{
-                mostrarMensaje("El usuario con id: $idTexto ,no existe")
+                mostrarMensaje("El usuario con id: $idEmail ,no existe")
                 val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("DATOS", "El usuario con id: $idTexto ,no existe")
+                intent.putExtra("DATOS", "El usuario con email: $idEmail ,no existe")
                 startActivity(intent)
                 return
             }
@@ -93,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actualizarListaUsuarios() {
-        val usuarios = operaciones.leerUsuarios()
+        val usuarios = operaciones.leerUsuariosOrdenadosPorNombre()
         if (usuarios.isEmpty()) {
             binding.tvOutput.text = "Tabla vacía"
         } else {
@@ -108,60 +107,66 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarEliminacion() {
-        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
+        val idTexto = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
-        // Comprobar si esta vacio
-        if (idTexto.isEmpty()) {
-            mostrarMensaje("Introduce id para eliminar")
-            return
-        }
-
-        // Si no esta vacio, comprobamos que sea un número valido.
-        val id = idTexto.toIntOrNull()
-        if (id == null) {
-            mostrarMensaje("ID tiene que ser un nº ")
-            return
-        }
-
-        val filasEliminadas = operaciones.borrarUsuario(id)
-        if (filasEliminadas > 0) {
-            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
-        } else {
-            mostrarMensaje("No se ha podido eliminar")
-        }
+//        // Comprobar si esta vacio
+//        if (idTexto.isEmpty()) {
+//            mostrarMensaje("Introduce id para eliminar")
+//            return
+//        }
+//
+//        // Si no esta vacio, comprobamos que sea un número valido.
+//        val email = idTexto
+//        if (email == null) {
+//            mostrarMensaje("Iemail tiene que ser un nº ")
+//            return
+//        }
+//
+//        val filasEliminadas = operaciones.borrarUsuario(email)
+//        if (filasEliminadas > 0) {
+//            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
+//        } else {
+//            mostrarMensaje("No se ha podido eliminar")
+//        }
+        operaciones.borrarUsuariosPorDominio(idTexto)
+        actualizarListaUsuarios()
     }
 
     private fun manejarActualizacion() {
         val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
-
-        // Comprobar si esta vacio
-        if (idTexto.isEmpty()) {
-            mostrarMensaje("Introduce id para actualizar")
-            return
-        }
-
-        // Si no esta vacio, comprobamos que sea un número valido.
-        val id = idTexto.toIntOrNull()
-        if (id == null) {
-            mostrarMensaje("ID tiene que ser un nº ")
-            return
-        }
+        val id = idTexto.toInt()
         val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
-        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+//
+//        // Comprobar si esta vacio
+//        if (idTexto.isEmpty()) {
+//            mostrarMensaje("Introduce id para actualizar")
+//            return
+//        }
+//
+//        // Si no esta vacio, comprobamos que sea un número valido.
+//        val id = idTexto.toIntOrNull()
+//        if (id == null) {
+//            mostrarMensaje("ID tiene que ser un nº ")
+//            return
+//        }
+//        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
+//        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+//
+//        // TODO: Validar campos nombre e email.
+//        val usuarioActualizado = Usuario(
+//            id = id,
+//            nombre,
+//            email = email
+//        )
+//        val filasActualizadas = operaciones.actualizarUsuario(usuarioActualizado)
+//        if (filasActualizadas > 0) {
+//            mostrarMensaje("Actualizacion correcta"); limpiarCampos(); actualizarListaUsuarios()
+//        } else {
+//            mostrarMensaje("No se ha podido actualizar")
+//        }
 
-        // TODO: Validar campos nombre e email.
-        val usuarioActualizado = Usuario(
-            id = id,
-            nombre,
-            email = email
-        )
-        val filasActualizadas = operaciones.actualizarUsuario(usuarioActualizado)
-        if (filasActualizadas > 0) {
-            mostrarMensaje("Actualizacion correcta"); limpiarCampos(); actualizarListaUsuarios()
-        } else {
-            mostrarMensaje("No se ha podido actualizar")
-        }
-
+        operaciones.actualizarNombre(id,nombre)
+        actualizarListaUsuarios()
 
     }
 
@@ -169,24 +174,31 @@ class MainActivity : AppCompatActivity() {
         val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
         val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
+        if (operaciones.existeUsuario(email)) {
+            mostrarMensaje("El usuario ya esta registrado con el email: $email")
+            return
+        }
+
         if (nombre.isEmpty() || email.isEmpty()) {
             mostrarMensaje("Completa los campos nombre & email")
             return
         }
+
         val usuario = Usuario(
             nombre = nombre,
             email = email
         )
-        val idGenerado = operaciones.insertarUsuario(usuario)
+        val idGenerado = operaciones.insertarUsuarioSiEmailNoExiste(usuario)
 
         if (idGenerado != -1L) {
             mostrarMensaje("Usuario insertado con id: $idGenerado")
             limpiarCampos()
             actualizarListaUsuarios()
         } else {
-            mostrarMensaje("Error al insertar usuario $idGenerado")
+            mostrarMensaje("Error al insertar usuario")
             limpiarCampos()
         }
+
 
     }
 
