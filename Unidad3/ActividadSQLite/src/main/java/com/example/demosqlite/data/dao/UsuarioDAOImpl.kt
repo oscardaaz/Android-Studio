@@ -101,7 +101,6 @@ class UsuarioDAOImpl(
     }
 
     override fun actualizarUsuario(usuario: Usuario): Int {
-        if (usuario.email == null) {return 0 }// No se pueden actualizar sin id
 
         if (!existeUsuario(usuario.email)) return 0
 
@@ -161,13 +160,41 @@ class UsuarioDAOImpl(
 
         val db = dbHelper.writableDatabase
 
+        // Opción 3: Sin placeholders (no recomendado si el valor viene de usuario)
         val filasBorradas = db.delete (
             UsuariosSQLiteHelper.TABLE_NAME,
-            "${UsuariosSQLiteHelper.COLUMN_EMAIL} LIKE ?",
-            arrayOf(dominio)
+            "${UsuariosSQLiteHelper.COLUMN_EMAIL} LIKE '%@$dominio%'",
+            null
         )
+        // Opción 1: Usando placeholders con concatenación en el array
+//        val filasBorradas = db.delete(
+//            UsuariosSQLiteHelper.TABLE_NAME,
+//            "${UsuariosSQLiteHelper.COLUMN_EMAIL} LIKE ?",
+//            arrayOf("%$dominio%")
+//        )
+
+        // Opción 2: Usando placeholders y concatenando en el where
+//        val filasBorradas = db.delete(
+//            UsuariosSQLiteHelper.TABLE_NAME,
+//            "${UsuariosSQLiteHelper.COLUMN_EMAIL} LIKE '%' || ? || '%'",
+//            arrayOf(dominio)
+//        )
 
         //DELETE * FROM usuarios WHERE id = ?
+        db.close()
+        return filasBorradas
+    }
+
+    override fun borrarTodosLosUsuarios(): Int {
+        val db = dbHelper.writableDatabase
+
+        val filasBorradas = db.delete (
+            UsuariosSQLiteHelper.TABLE_NAME,
+            null,
+            null
+        )
+
+        //DELETE FROM usuarios
         db.close()
         return filasBorradas
     }

@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnACT.setOnClickListener { manejarActualizacion() }
         binding.btnDEL.setOnClickListener { manejarEliminacion() }
         binding.btnCON.setOnClickListener { manejarConsulta() }
-
+        binding.btnPapelera.setOnClickListener { borrarTodosLosUsuarios() }
     }
 
     private fun manejarConsulta() {
@@ -87,14 +87,13 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
         //CASO 2
     }
 
     private fun actualizarListaUsuarios() {
         val usuarios = operaciones.leerUsuariosOrdenadosPorNombre()
         if (usuarios.isEmpty()) {
-            binding.tvOutput.text = "Tabla vacía"
+            binding.tvOutput.text = "Tabla vacía, No existen Usuarios"
         } else {
             val textoTabla = StringBuilder()
             for (usuario in usuarios) {
@@ -103,11 +102,10 @@ class MainActivity : AppCompatActivity() {
             binding.tvOutput.text = textoTabla.toString()
         }
 
-
     }
 
     private fun manejarEliminacion() {
-        val idTexto = binding.textInputLayoutEmail.editText?.text.toString().trim()
+        val dominio = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
 //        // Comprobar si esta vacio
 //        if (idTexto.isEmpty()) {
@@ -128,10 +126,20 @@ class MainActivity : AppCompatActivity() {
 //        } else {
 //            mostrarMensaje("No se ha podido eliminar")
 //        }
-        operaciones.borrarUsuariosPorDominio(idTexto)
+
+        val filasEliminadas = operaciones.borrarUsuariosPorDominio(dominio)
+        mostrarMensaje("Eliminacion correcta")
         actualizarListaUsuarios()
     }
 
+    private fun borrarTodosLosUsuarios() {
+        val filasEliminadas = operaciones.borrarTodosLosUsuarios()
+        if (filasEliminadas > 0) {
+            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
+        } else {
+            mostrarMensaje("No se ha podido eliminar")
+        }
+    }
     private fun manejarActualizacion() {
         val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
         val id = idTexto.toInt()
@@ -179,8 +187,14 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (nombre.isEmpty() || email.isEmpty()) {
+        if (nombre.isEmpty() || email.isEmpty() || nombre == "" || email == "") {
             mostrarMensaje("Completa los campos nombre & email")
+            if (nombre.isEmpty()) {
+                binding.textInputLayoutNombre.error = "*Nombre Obligatorio*"
+            }
+            if (email.isEmpty()){
+                binding.textInputLayoutEmail.error = "*Email Obligatorio*"
+            }
             return
         }
 
@@ -192,6 +206,8 @@ class MainActivity : AppCompatActivity() {
 
         if (idGenerado != -1L) {
             mostrarMensaje("Usuario insertado con id: $idGenerado")
+            binding.textInputLayoutEmail.error = ""
+            binding.textInputLayoutNombre.error = ""
             limpiarCampos()
             actualizarListaUsuarios()
         } else {
@@ -217,6 +233,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 } // Fin de la clase
+
+
 
 
 

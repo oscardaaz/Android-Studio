@@ -13,5 +13,7 @@ interface UsuarioDAO {
     fun borrarUsuario(email : String) : Int
     fun borrarUsuariosPorDominio(dominio: String): Int
 
+    fun borrarTodosLosUsuarios(): Int
+
 
 }
