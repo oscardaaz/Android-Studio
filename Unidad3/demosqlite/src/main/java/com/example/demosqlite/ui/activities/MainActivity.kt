@@ -229,6 +229,7 @@ class MainActivity : AppCompatActivity() {
             binding.textInputLayoutEmail.error = "Estructura no valida, prueba: 'email@dominio.com' "
             return
         }
+
         val usuario = Usuario(
             nombre = nombre,
             email = email
