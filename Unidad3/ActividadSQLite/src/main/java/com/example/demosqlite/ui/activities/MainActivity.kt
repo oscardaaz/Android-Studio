@@ -88,6 +88,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         //CASO 2
+       // override fun contarUsuarios(): Int {
+//        val cantidadUsuarios = operaciones.contarUsuarios()
+//        if (cantidadUsuarios == 0) {
+//            mostrarMensaje("Mostrando usuarios totales")
+//            val intent = Intent(this, SecondActivity::class.java)
+//            intent.putExtra("DATOS", "No hay usuarios en la lista")
+//            startActivity(intent)
+//            return
+//        }else{
+//            mostrarMensaje("Mostrando usuarios totales")
+//            val intent = Intent(this, SecondActivity::class.java)
+//            intent.putExtra("DATOS", "La cantidad total de usuarios es: ${cantidadUsuarios.toString()}")
+//            startActivity(intent)
+//            return
+//        }
     }
 
     private fun actualizarListaUsuarios() {
@@ -172,9 +187,18 @@ class MainActivity : AppCompatActivity() {
 //        } else {
 //            mostrarMensaje("No se ha podido actualizar")
 //        }
+        // Actualizar nombre por id
+//        operaciones.actualizarNombre(id,nombre)
+//        actualizarListaUsuarios()
 
-        operaciones.actualizarNombre(id,nombre)
-        actualizarListaUsuarios()
+        //Actualizar email si no existe otro email igual
+       val actualizarEmail = operaciones.actualizarEmailSiDisponible(19,"nuevoEemail.com")
+        if (actualizarEmail){
+            mostrarMensaje("El usuario ha sido actualizado correctamente")
+            actualizarListaUsuarios()
+        }else {
+            mostrarMensaje("No se ha podido actualizar ese usuario")
+        }
 
     }
 

@@ -83,7 +83,7 @@ class UsuarioDAOImpl(
 
     override fun actualizarNombre(id: Int, nuevoNombre: String): Int {
 
-
+        if (existeUsuarioPorId(id)) return -1
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put(UsuariosSQLiteHelper.COLUMN_NOMBRE, nuevoNombre)
@@ -121,6 +121,29 @@ class UsuarioDAOImpl(
         return filasActualizadas
     }
 
+    override fun actualizarEmailSiDisponible(
+        id: Int,
+        nuevoEmail: String
+    ): Boolean {
+        if (!existeUsuarioPorId(id)) return false
+        if (existeUsuario(nuevoEmail)) return false
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(UsuariosSQLiteHelper.COLUMN_EMAIL, nuevoEmail)
+        }
+
+        db.update (
+            UsuariosSQLiteHelper.TABLE_NAME,
+            values,
+            "${UsuariosSQLiteHelper.COLUMN_ID} = ?",
+            arrayOf(id.toString())
+        )
+        //UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?
+        db.close()
+
+        return true
+    }
+
     // Se puede poner private fun, estaba asi, pero la hago publica
     fun existeUsuario(email: String): Boolean {
         val db = dbHelper.readableDatabase
@@ -132,6 +155,23 @@ class UsuarioDAOImpl(
         """.trimIndent()
 
         val cursor = db.rawQuery(query,arrayOf(email))
+        val existe = cursor.count > 0
+
+        cursor.close()
+        db.close()
+        return existe
+    }
+
+    fun existeUsuarioPorId(id: Int): Boolean {
+        val db = dbHelper.readableDatabase
+
+        val query = """
+            SELECT ${UsuariosSQLiteHelper.COLUMN_ID} 
+            FROM ${UsuariosSQLiteHelper.TABLE_NAME}
+            WHERE ${UsuariosSQLiteHelper.COLUMN_ID} = ?
+        """.trimIndent()
+
+        val cursor = db.rawQuery(query,arrayOf(id.toString()))
         val existe = cursor.count > 0
 
         cursor.close()
@@ -197,6 +237,27 @@ class UsuarioDAOImpl(
         //DELETE FROM usuarios
         db.close()
         return filasBorradas
+    }
+
+    override fun contarUsuarios(): Int {
+
+        val db= dbHelper.readableDatabase
+
+        val query = "SELECT COUNT(*) FROM ${UsuariosSQLiteHelper.TABLE_NAME}"
+        // En SQL seria --> SELECT * FROM usuarios
+
+        var usuarios = 0
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToNext()){
+            do {
+                usuarios = cursor.getInt(0)
+            }while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return usuarios
+
     }
 
 
