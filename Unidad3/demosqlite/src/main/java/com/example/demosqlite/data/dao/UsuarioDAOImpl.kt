@@ -130,5 +130,18 @@ class UsuarioDAOImpl(
         return filasBorradas
     }
 
+    override fun borrarTodosLosUsuarios(): Int {
+        val db = dbHelper.writableDatabase
+
+        val filasBorradas = db.delete (
+            UsuariosSQLiteHelper.TABLE_NAME,
+            null,
+            null
+        )
+
+        //DELETE FROM usuarios
+        db.close()
+        return filasBorradas
+    }
 
 }
