@@ -1,14 +1,9 @@
-package com.example.demosqlite.ui.activities
+package com.example.actividadsqlite_v2.ui.activities
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.demosqlite.R
-import com.example.demosqlite.data.dao.UsuarioDAOImpl
-import com.example.demosqlite.databinding.ActivitySecondBinding
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.actividadsqlite_v2.data.dao.UsuarioDAOImpl
+import com.example.actividadsqlite_v2.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
 

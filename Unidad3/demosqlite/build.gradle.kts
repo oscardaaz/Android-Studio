@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.demosqlite"
+    namespace = "com.example.actividadsqlite_v2"
     compileSdk {
         version = release(36)
     }

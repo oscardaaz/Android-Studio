@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.MainActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutID"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="36dp"
+        android:hint="id:"
+        app:helperTextEnabled="true"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:hint="Email:"
+        android:inputType="textEmailAddress"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_email"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutNombre"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:hint="Nombre:"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_usuario"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutID"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutID"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutID">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center|clip_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail">
+
+        <Button
+            android:id="@+id/btnINS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INS" />
+
+        <Button
+            android:id="@+id/btnACT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACT" />
+
+        <Button
+            android:id="@+id/btnCON"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CON" />
+
+        <Button
+            android:id="@+id/btnDEL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DEL" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPapelera"
+        android:layout_width="86dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:text="."
+        app:icon="@drawable/ic_papelera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/tvOutput"
+        android:layout_width="368dp"
+        android:layout_height="181dp"
+        android:layout_marginTop="36dp"
+        android:text="Output"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPapelera"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

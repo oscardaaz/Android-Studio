@@ -1,4 +1,4 @@
-package com.example.demosqlite.data.model
+package com.example.actividadsqlite_v2.data.model
 
 data class Usuario (
     val id: Int? = null,

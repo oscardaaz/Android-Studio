@@ -1,12 +1,12 @@
-package com.example.demosqlite.ui.activities
+package com.example.actividadsqlite_v2.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.demosqlite.data.dao.UsuarioDAOImpl
-import com.example.demosqlite.data.database.UsuariosSQLiteHelper
-import com.example.demosqlite.data.model.Usuario
-import com.example.demosqlite.databinding.ActivityMainBinding
+import com.example.actividadsqlite_v2.data.dao.UsuarioDAOImpl
+import com.example.actividadsqlite_v2.data.database.UsuariosSQLiteHelper
+import com.example.actividadsqlite_v2.data.model.Usuario
+import com.example.actividadsqlite_v2.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {

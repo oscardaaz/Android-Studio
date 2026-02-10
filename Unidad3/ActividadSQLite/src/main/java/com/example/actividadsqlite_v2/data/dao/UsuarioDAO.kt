@@ -1,6 +1,6 @@
-package com.example.demosqlite.data.dao
+package com.example.actividadsqlite_v2.data.dao
 
-import com.example.demosqlite.data.model.Usuario
+import com.example.actividadsqlite_v2.data.model.Usuario
 
 interface UsuarioDAO {
 

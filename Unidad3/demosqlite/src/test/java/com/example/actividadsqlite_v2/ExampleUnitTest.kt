@@ -1,4 +1,4 @@
-package com.example.demosqlite
+package com.example.actividadsqlite_v2
 
 import org.junit.Test
 

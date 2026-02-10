@@ -1,8 +1,8 @@
-package com.example.demosqlite.data.dao
+package com.example.actividadsqlite_v2.data.dao
 
 import android.content.ContentValues
-import com.example.demosqlite.data.database.UsuariosSQLiteHelper
-import com.example.demosqlite.data.model.Usuario
+import com.example.actividadsqlite_v2.data.database.UsuariosSQLiteHelper
+import com.example.actividadsqlite_v2.data.model.Usuario
 
 class UsuarioDAOImpl(
     private val dbHelper: UsuariosSQLiteHelper
