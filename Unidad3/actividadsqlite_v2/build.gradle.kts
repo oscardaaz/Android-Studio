@@ -2,15 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
+val defaultApplicationId by extra("com.example.demosqlite")
 
 android {
-    namespace = "com.example.actividadsqlite_v2"
+    namespace = "com.example.actividadsqlite"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.demosqlite"
+        applicationId = "com.example.actividadsqlite_v2"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

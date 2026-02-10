@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.actividadsqlite_v2"
+    namespace = "com.example.actividadsqlite"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.demosqlite"
+        applicationId = "com.example.ActividadSQLite"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
