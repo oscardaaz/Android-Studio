@@ -221,7 +221,11 @@ class MainActivity : AppCompatActivity() {
         val validarEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
         if (nombre.isEmpty() || email.isEmpty()) {
-            mostrarMensaje("Completa los campos nombre & email")
+            mostrarMensaje("Campos email y nombre obligatorios")
+            if (nombre.isEmpty()) binding.textInputLayoutNombre.error = "Campo obligatorio para actualizar*"
+            if (!nombre.isEmpty()) limpiarErrores(NOMBRE)
+            if (email.isEmpty()) binding.textInputLayoutEmail.error = "Campo obligatorio para actualizar*"
+            if (!email.isEmpty()) limpiarErrores(EMAIL)
             return
         }
         if (!validarEmail) {
