@@ -3,6 +3,7 @@ package com.example.actividadsqlite.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.actividadsqlite.R
 import com.example.actividadsqlite.databinding.ActivityMainBinding
 import com.example.actividadsqlite.data.dao.UsuarioDAOImpl
 import com.example.actividadsqlite.data.database.UsuariosSQLiteHelper
@@ -19,9 +20,52 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //val toolbar = findViewById<MaterialToolbar>(R.id.cbMaterialToolbar)
+        val toolbar = binding.cbMaterialToolbar
+
+        toolbar.inflateMenu(R.menu.menu_appbar)
+
+
+//        toolbar.setNavigationOnClickListener {
+//            //finish()
+//            onBackPressedDispatcher.onBackPressed()
+//        }
+        //Se puede poner aqui o en el XML
+//        toolbar.title = "Lista de Usuarios"
+//        toolbar.subtitle = "Programacion Moviles"
+
         //Inicializamos el DAO
         val dbHelper = UsuariosSQLiteHelper(this)
         operaciones = UsuarioDAOImpl(dbHelper)
+
+        toolbar.setOnMenuItemClickListener { item ->
+
+            when (item.itemId){
+                 R.id.action_insertar -> {
+                    manejarInsercion()
+                    true
+                }
+                R.id.action_consultar -> {
+                    manejarConsulta()
+                    true
+                }
+                R.id.action_actualizar -> {
+                    manejarActualizacion()
+                    true
+                }
+                R.id.action_eliminar -> {
+                    manejarEliminacion()
+                    true
+                }
+                R.id.action_eliminarAll -> {
+                    borrarTodosLosUsuarios()
+                    true
+                }
+
+                else -> false
+            }
+
+        }
 
         configurarListeners()
 

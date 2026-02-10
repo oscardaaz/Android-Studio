@@ -6,19 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/cbMaterialToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="MainActivity"
+            app:subtitle="Programacion Moviles XML"
+            app:titleCentered="false"
+            app:subtitleCentered="false"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Contenedor horizontal para los 4 botones -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutID"
         android:layout_width="360dp"
         android:layout_height="80dp"
         android:layout_marginTop="36dp"
         android:hint="id:"
-        app:helperTextEnabled="true"
         app:errorEnabled="true"
-        app:startIconDrawable="@drawable/ic_id"
+        app:helperTextEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:startIconDrawable="@drawable/ic_id">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
+        android:layout_width="360dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="12dp"
+        android:hint="Email:"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre"
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -29,14 +70,14 @@
         android:id="@+id/textInputLayoutNombre"
         android:layout_width="360dp"
         android:layout_height="80dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:hint="Nombre:"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_usuario"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayoutID"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textInputLayoutID"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutID">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutID"
+        app:startIconDrawable="@drawable/ic_usuario">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -44,36 +85,18 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEmail"
-        android:layout_width="360dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
-        android:hint="Email:"
-        app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_email"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNombre"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayoutNombre"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Contenedor horizontal para los 4 botones -->
     <LinearLayout
         android:id="@+id/buttonsContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="24dp"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail">
 
@@ -81,24 +104,24 @@
             android:id="@+id/btnINS"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             android:text="INS" />
 
         <Button
             android:id="@+id/btnACT"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             android:text="ACT" />
 
         <Button
             android:id="@+id/btnCON"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             android:text="CON" />
 
         <Button
@@ -108,6 +131,22 @@
             android:layout_weight="1"
             android:text="DEL" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOutput"
+        android:layout_width="338dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Output"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPapelera"
+        app:layout_constraintVertical_bias="0.208" />
 
     <!-- Botón papelera debajo, alineado a la derecha -->
     <Button
@@ -120,19 +159,5 @@
         app:icon="@drawable/ic_papelera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonsContainer" />
-
-    <TextView
-        android:id="@+id/tvOutput"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Output"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPapelera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

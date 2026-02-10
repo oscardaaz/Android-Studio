@@ -3,7 +3,7 @@ package com.example.demosqlite.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.demosqlite.data.dao.UsuarioDAOImpl
-import com.example.actividadsqlite_v2.databinding.ActivitySecondBinding
+import com.example.demosqlite.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
 
