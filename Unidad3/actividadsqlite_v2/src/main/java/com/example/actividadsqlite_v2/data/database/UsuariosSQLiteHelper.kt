@@ -1,10 +1,10 @@
-package com.example.actividadsqlite.data.database
+package com.example.actividadsqlite_v2.data.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class UsuariosSQLiteHelper (contexto: Context) : SQLiteOpenHelper(
+class UsuariosSQLiteHelper (contexto: Context) : SQLiteOpenHelper (
 
     contexto,
     DATABASE_NAME,
@@ -12,8 +12,8 @@ class UsuariosSQLiteHelper (contexto: Context) : SQLiteOpenHelper(
     DATABASE_VERSION
 ) {
     companion object{
-        const val DATABASE_NAME = "usuarios.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_NAME = "usuariosv2.db"
+        const val DATABASE_VERSION = 2
 
         const val TABLE_NAME = "usuarios"
 

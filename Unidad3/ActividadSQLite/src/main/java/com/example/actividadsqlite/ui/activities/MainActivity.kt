@@ -3,10 +3,10 @@ package com.example.actividadsqlite.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.actividadsqlite.databinding.ActivityMainBinding
 import com.example.actividadsqlite.data.dao.UsuarioDAOImpl
 import com.example.actividadsqlite.data.database.UsuariosSQLiteHelper
 import com.example.actividadsqlite.data.model.Usuario
-import com.example.actividadsqlite.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {

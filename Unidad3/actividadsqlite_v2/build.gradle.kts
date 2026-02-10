@@ -5,7 +5,7 @@ plugins {
 val defaultApplicationId by extra("com.example.demosqlite")
 
 android {
-    namespace = "com.example.actividadsqlite"
+    namespace = "com.example.actividadsqlite_v2"
     compileSdk {
         version = release(36)
     }

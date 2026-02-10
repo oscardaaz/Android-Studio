@@ -1,4 +1,4 @@
-package com.example.actividadsqlite.data.database
+package com.example.demosqlite.data.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
