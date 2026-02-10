@@ -165,30 +165,31 @@ class MainActivity : AppCompatActivity() {
 
     private fun manejarEliminacion() {
         val dominio = binding.textInputLayoutEmail.editText?.text.toString().trim()
+        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
 
 //        // Comprobar si esta vacio
-//        if (idTexto.isEmpty()) {
-//            mostrarMensaje("Introduce id para eliminar")
-//            return
-//        }
-//
-//        // Si no esta vacio, comprobamos que sea un número valido.
-//        val email = idTexto
-//        if (email == null) {
-//            mostrarMensaje("Iemail tiene que ser un nº ")
-//            return
-//        }
-//
-//        val filasEliminadas = operaciones.borrarUsuario(email)
-//        if (filasEliminadas > 0) {
-//            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
-//        } else {
-//            mostrarMensaje("No se ha podido eliminar")
-//        }
+        if (idTexto.isEmpty()) {
+            mostrarMensaje("Introduce id para eliminar")
+            return
+        }
 
-        val filasEliminadas = operaciones.borrarUsuariosPorDominio(dominio)
-        mostrarMensaje("Eliminacion correcta")
-        actualizarListaUsuarios()
+        // Si no esta vacio, comprobamos que sea un número valido.
+        val email = idTexto
+        if (email == null) {
+            mostrarMensaje("Iemail tiene que ser un nº ")
+            return
+        }
+
+        val filasEliminadas = operaciones.borrarUsuario(email)
+        if (filasEliminadas > 0) {
+            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
+        } else {
+            mostrarMensaje("No se ha podido eliminar")
+        }
+
+//        val filasEliminadas = operaciones.borrarUsuariosPorDominio(dominio)
+//        mostrarMensaje("Eliminacion correcta")
+//        actualizarListaUsuarios()
     }
 
     private fun borrarTodosLosUsuarios() {
