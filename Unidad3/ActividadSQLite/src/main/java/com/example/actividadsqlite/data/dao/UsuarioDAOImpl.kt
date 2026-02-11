@@ -27,7 +27,7 @@ class UsuarioDAOImpl(
 
 
         return resultado
-}
+    }
 }
 
     override fun leerUsuariosOrdenadosPorNombre(): List<Usuario> {
@@ -35,7 +35,7 @@ class UsuarioDAOImpl(
         val db= dbHelper.readableDatabase
 
         val query = "SELECT * FROM ${UsuariosSQLiteHelper.TABLE_NAME} ORDER BY ${
-            UsuariosSQLiteHelper.COLUMN_NOMBRE}"
+            UsuariosSQLiteHelper.COLUMN_ID}"
         // En SQL seria --> SELECT * FROM usuarios
 
         val cursor = db.rawQuery(query, null)
