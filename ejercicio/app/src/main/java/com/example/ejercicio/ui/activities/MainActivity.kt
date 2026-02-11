@@ -70,7 +70,8 @@ class MainActivity : AppCompatActivity() {
             mostrarMensaje("Elminacion del usuario con id: $id correcta")
         }else{
             mostrarMensaje("No se ha podido eliminar el usuario con id: $id")
-            Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Error al insertar usuario " +
+                    "con id: $id",Toast.LENGTH_LONG).show()
             Log.d("MainActivity","El id: $id no existe")
             Log.e("MainActivity","El id: $id no existe")
         }
