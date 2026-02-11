@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         toolbar()
         configurarListeners()
+        actualizarListaUsuarios()
 
 
     }
@@ -145,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             val textoTabla = StringBuilder()
             for (receta in recetas) {
-                textoTabla.append("$receta\n")
+                textoTabla.append("$receta\n\n")
             }
             binding.tvOutput.text = textoTabla.toString()
         }

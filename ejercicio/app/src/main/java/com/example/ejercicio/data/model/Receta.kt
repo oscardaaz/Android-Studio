@@ -7,6 +7,6 @@ data class Receta(
     val tiempo_preparacion: Int
 ) {
     override fun toString(): String {
-        return "Receta(id=$id, nombre='$nombre', categoria='$categoria', tiempo_preparacion=$tiempo_preparacion)"
+        return "Receta(id=$id, nombre='$nombre', categoria='$categoria', tiempo_preparacion=$tiempo_preparacion minutos)"
     }
 }
