@@ -1,6 +1,8 @@
 package com.example.ejercicio.ui.activities
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ejercicio.R
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         toolbar()
         configurarListeners()
-        actualizarListaUsuarios()
+       // actualizarListaUsuarios()
 
 
     }
@@ -45,24 +47,48 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarConsulta() {
-        TODO("Not yet implemented")
+        actualizarListaReceta()
     }
 
     private fun manejarEliminacion() {
-        TODO("Not yet implemented")
+
+        limpiarErrores()
+        val id = binding.textInputLayoutID.editText?.text.toString().trim()
+
+        if (id.isEmpty()) {
+            mostrarMensaje("El campo ID es obligatorio para eliminar")
+            binding.textInputLayoutID.error = "*Campo obligatorio para eliminar"
+            return
+        }
+
+        val operacion = operaciones.borrarReceta(id.toInt())
+
+        if (operacion > 0){
+            mostrarMensaje("Elminacion del usuario con id: $id correcta")
+        }else{
+            mostrarMensaje("No se ha podido eliminar el usuario con id: $id")
+            Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
+            Log.d("MainActivity","El id: $id no existe")
+            Log.e("MainActivity","El id: $id no existe")
+        }
+
+        limpiarCampos()
+        limpiarErrores()
+        limpiarFocus()
+
     }
 
     private fun manejarInsercion() {
-
+        limpiarErrores()
         val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
         val categoria = binding.textInputLayoutCategoria.editText?.text.toString().trim()
         val tiempo = binding.textInputLayoutTiempo.editText?.text.toString().trim()
 
         if (nombre.isEmpty() || categoria.isEmpty() || tiempo.isEmpty()){
-            mostrarMensaje("Completa los campos obligatorios")
-            binding.textInputLayoutNombre.error = "Campo Obligatorio"
-            binding.textInputLayoutCategoria.error = "Campo Obligatorio"
-            binding.textInputLayoutTiempo.error = "Campo Obligatorio"
+            mostrarMensaje("Completa los campos obligatorios para insertar")
+            binding.textInputLayoutNombre.error = "Campo Obligatorio para insertar"
+            binding.textInputLayoutCategoria.error = "Campo Obligatorio para insertar"
+            binding.textInputLayoutTiempo.error = "Campo Obligatorio para insertar"
             return
         }
 
@@ -82,11 +108,12 @@ class MainActivity : AppCompatActivity() {
         limpiarErrores()
         limpiarCampos()
         limpiarFocus()
-        actualizarListaUsuarios()
+        actualizarListaReceta()
 
     }
 
     private fun limpiarErrores(){
+        binding.textInputLayoutID.error = null
         binding.textInputLayoutNombre.error = null
         binding.textInputLayoutCategoria.error = null
         binding.textInputLayoutTiempo.error = null
@@ -139,10 +166,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun actualizarListaUsuarios() {
+    private fun actualizarListaReceta() {
         val recetas = operaciones.leerRecetas()
         if (recetas.isEmpty()) {
-            binding.tvOutput.text = "Tabla vacía, No existen Usuarios"
+            binding.tvOutput.text = "Tabla vacía, No existen recetas"
         } else {
             val textoTabla = StringBuilder()
             for (receta in recetas) {

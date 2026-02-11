@@ -3,15 +3,13 @@ package com.example.ejercicio.data.dao
 import android.content.ContentValues
 import com.example.ejercicio.data.database.RecetasSQLiteHelper
 import com.example.ejercicio.data.model.Receta
-import kotlin.compareTo
-import kotlin.text.insert
 
 class RecetaDAOImpl(
     private val dbHelper: RecetasSQLiteHelper
 ) : RecetaDAO{
     override fun insertarReceta(receta: Receta): Long {
 
-        if (existeUsuario(receta.id)) return 0
+        if (existeReceta(receta.id)) return 0
 
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
@@ -61,13 +59,26 @@ class RecetaDAOImpl(
     }
 
     override fun borrarReceta(id: Int): Int {
-        TODO("Not yet implemented")
+
+        if (!existeReceta(id)) return 0
+
+        val db = dbHelper.writableDatabase
+
+        val filasBorradas = db.delete (
+            RecetasSQLiteHelper.TABLE_NAME,
+            "${RecetasSQLiteHelper.COLUMN_ID} = ?",
+            arrayOf(id.toString())
+        )
+
+        //DELETE * FROM usuarios WHERE id = ?
+        db.close()
+        return filasBorradas
     }
 
 
 
 
-    override fun existeUsuario(id: Int?): Boolean {
+    override fun existeReceta(id: Int?): Boolean {
         val db = dbHelper.readableDatabase
 
         val query = """

@@ -12,5 +12,5 @@ interface RecetaDAO {
 
     fun borrarReceta(id : Int) : Int
 
-    fun existeUsuario(id: Int?): Boolean
+    fun existeReceta(id: Int?): Boolean
 }

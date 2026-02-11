@@ -131,12 +131,11 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ScrollView
-        android:layout_width="357dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="360dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="12dp"
         android:fadeScrollbars="false"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCON">
@@ -144,8 +143,7 @@
         <TextView
             android:id="@+id/tvOutput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tabla output" />
+            android:layout_height="wrap_content" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
