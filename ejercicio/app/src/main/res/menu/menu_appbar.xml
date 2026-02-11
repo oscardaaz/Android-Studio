@@ -14,7 +14,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_eliminar"
-        android:title="Eliminar"
+        android:title="Borrar por ID"
         app:showAsAction="never" />
 
 </menu>
