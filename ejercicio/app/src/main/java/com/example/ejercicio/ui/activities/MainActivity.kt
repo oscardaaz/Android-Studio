@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarConsulta() {
+        limpiarErrores()
+        limpiarCampos()
+        limpiarFocus()
         actualizarListaReceta()
     }
 
