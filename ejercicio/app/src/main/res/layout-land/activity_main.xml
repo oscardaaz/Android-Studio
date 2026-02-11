@@ -30,11 +30,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutID"
         android:layout_width="360dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="36dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
         android:hint="id: "
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
@@ -46,12 +47,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutNombre"
         android:layout_width="360dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
         android:hint="Nombre de la receta"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutID">
 
@@ -61,16 +62,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutCategoria"
+        android:id="@+id/textInputLayoutTiempo"
         android:layout_width="360dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:hint="Categoria"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:hint="Tiempo de preparacion (minutos)"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCategoria">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -78,14 +79,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutTiempo"
+        android:id="@+id/textInputLayoutCategoria"
         android:layout_width="360dp"
-        android:layout_height="80dp"
-        android:hint="Tiempo de preparacion (minutos)"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:hint="Categoria"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCategoria">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNombre">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -96,12 +99,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="358dp"
         android:layout_height="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutTiempo">
+        app:layout_constraintStart_toEndOf="@+id/textInputLayoutID"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <Button
             android:id="@+id/btnINS"
@@ -124,21 +126,23 @@
         android:id="@+id/btnCON"
         android:layout_width="358dp"
         android:layout_height="54dp"
+        android:layout_marginTop="8dp"
         android:text="MOSTRAR TODAS LAS RECETAS"
         app:icon="@drawable/ic_lupa"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ScrollView
-        android:layout_width="361dp"
-        android:layout_height="204dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="363dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="20dp"
         android:fadeScrollbars="false"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnCON"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnCON"
         app:layout_constraintTop_toBottomOf="@+id/btnCON">
 
         <TextView
