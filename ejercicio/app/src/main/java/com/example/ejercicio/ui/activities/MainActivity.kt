@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (tiempo.toIntOrNull() == null || tiempo.toInt() > 0){
+        if (tiempo.toIntOrNull() == null || tiempo.toInt() <= 0){
             mostrarMensaje("El tiempo tiene que ser un numero y mayor de 0")
             binding.textInputLayoutTiempo.error = "El tiempo tiene que ser un numero y mayor de 0"
             return

@@ -9,7 +9,7 @@ class RecetaDAOImpl(
 ) : RecetaDAO{
     override fun insertarReceta(receta: Receta): Long {
 
-        if (existeReceta(receta.id)) return 0
+        if (existeReceta(receta.id)) return -1
 
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
