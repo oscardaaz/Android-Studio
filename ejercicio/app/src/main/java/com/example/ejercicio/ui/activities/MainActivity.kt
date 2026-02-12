@@ -1,5 +1,6 @@
 package com.example.ejercicio.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun configurarListeners() {
         binding.btnINS.setOnClickListener { manejarInsercion() }
         binding.btnDEL.setOnClickListener { manejarEliminacion() }
-        binding.btnCON.setOnClickListener { manejarConsulta() }
+        binding.btnCON.setOnClickListener { manejarConsultaSegundaActivity() }
 
     }
 
@@ -51,6 +52,25 @@ class MainActivity : AppCompatActivity() {
         limpiarCampos()
         limpiarFocus()
         actualizarListaReceta()
+    }
+
+    private fun manejarConsultaSegundaActivity(){
+        val recetas = operaciones.leerRecetas()
+
+        val datos = if (recetas.isEmpty()) {
+            "Tabla vacía, No existen recetas"
+        } else {
+            val textoTabla = StringBuilder()
+            for (receta in recetas) {
+                textoTabla.append("$receta\n\n")
+            }
+         textoTabla.toString()
+        }
+
+        val intent = Intent(this, SegundaActivity::class.java)
+        intent.putExtra("DATOS",datos)
+        startActivity(intent)
+
     }
 
     private fun manejarEliminacion() {

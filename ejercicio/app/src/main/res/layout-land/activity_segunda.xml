@@ -30,24 +30,25 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="199dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="347dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Lista de recetas"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <TextView
         android:id="@+id/tvOutput"
-        android:layout_width="293dp"
-        android:layout_height="371dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="567dp"
+        android:layout_height="194dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
