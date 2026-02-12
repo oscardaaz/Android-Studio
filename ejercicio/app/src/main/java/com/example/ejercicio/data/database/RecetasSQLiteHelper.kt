@@ -13,7 +13,6 @@ class RecetasSQLiteHelper (contexto: Context) : SQLiteOpenHelper (
     companion object {
         const val DATABASE_NAME = "dbRecetas"
         const val DATABASE_VERSION = 1
-
         const val TABLE_NAME = "recetas"
 
         //COLUMNAS
