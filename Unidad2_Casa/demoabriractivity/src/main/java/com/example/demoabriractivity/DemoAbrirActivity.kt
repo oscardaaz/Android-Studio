@@ -20,7 +20,7 @@ class DemoAbrirActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(android.R.layout.activity_demo_abrir)
+        setContentView(R.layout.activity_demo_abrir)
 
         // Inicializamos los controles
         btnAceptar = findViewById(R.id.btnAceptar)

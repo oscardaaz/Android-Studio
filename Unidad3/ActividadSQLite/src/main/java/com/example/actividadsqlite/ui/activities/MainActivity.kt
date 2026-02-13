@@ -2,6 +2,8 @@ package com.example.actividadsqlite.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.actividadsqlite.R
 import com.example.actividadsqlite.databinding.ActivityMainBinding
@@ -293,6 +295,51 @@ class MainActivity : AppCompatActivity() {
         binding.textInputLayoutEmail.editText?.setText("")
     }
 
+    private fun limpiarErrores(){
+        binding.textInputLayoutID.error = null
+        binding.textInputLayoutNombre.error = null
+        binding.textInputLayoutEmail.error = null
+    }
+
+    private fun toolbar() {
+        val toolbar = binding.cbMaterialToolbar
+        toolbar.inflateMenu(R.menu.menu_appbar)
+
+        toolbar.setOnMenuItemClickListener { item ->
+
+            when (item.itemId){
+                R.id.action_insertar -> {
+                    manejarInsercion()
+                    true
+                }
+                R.id.action_consultar -> {
+                    manejarConsulta()
+                    true
+                }
+                R.id.action_eliminar -> {
+                    manejarEliminacion()
+                    true
+                }
+
+                else -> false
+            }
+
+        }
+
+    }
+    private fun insertarLogcat (mensaje:String){
+        Log.e(
+            "MainActivity",
+            mensaje
+        )
+    }
+
+    private fun toast(mensaje : String){
+        Toast.makeText(
+            this,
+            mensaje,
+            Toast.LENGTH_LONG).show()
+    }
     private fun mostrarMensaje(mensaje: String) {
         Snackbar.make(
             binding.root,
