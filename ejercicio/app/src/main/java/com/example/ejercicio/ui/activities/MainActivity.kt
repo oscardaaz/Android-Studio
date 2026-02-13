@@ -156,6 +156,20 @@ class MainActivity : AppCompatActivity() {
             Snackbar.LENGTH_LONG
         ).show()
     }
+
+    private fun insertarLogcat (mensaje:String){
+        Log.e(
+            "MainActivity",
+            mensaje
+        )
+    }
+
+    private fun toast(mensaje : String){
+        Toast.makeText(
+            this,
+            mensaje,
+            Toast.LENGTH_LONG).show()
+    }
     private fun limpiarCampos() {
         binding.textInputLayoutID.editText?.setText("")
         binding.textInputLayoutNombre.editText?.setText("")
