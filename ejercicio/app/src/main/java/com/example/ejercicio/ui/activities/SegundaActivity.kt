@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ejercicio.R
+import com.example.ejercicio.data.dao.RecetaDAOImpl
+import com.example.ejercicio.data.database.RecetasSQLiteHelper
 import com.example.ejercicio.databinding.ActivitySegundaBinding
 
 class SegundaActivity : AppCompatActivity() {
 
+
+   // private lateinit var operaciones : RecetaDAOImpl
     private lateinit var binding : ActivitySegundaBinding
 
 
@@ -28,9 +32,21 @@ class SegundaActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+
+//        val dbHelper = RecetasSQLiteHelper(this)
+//        operaciones = RecetaDAOImpl(dbHelper)
+
         val datos = intent.getStringExtra("DATOS")
         binding.tvOutput.text = datos.toString()
 
+       // val tabla = operaciones.leerRecetas()
+
+//        val datos = StringBuilder()
+//        for (tablas in tabla){
+//           datos.append("$tablas\n\n")
+//
+//       }
+//        binding.tvOutput.text = datos
 
     }
 }
