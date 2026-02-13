@@ -5,6 +5,7 @@ import com.example.actividadsqlite.data.model.Usuario
 interface UsuarioDAO {
 
     fun insertarUsuarioSiEmailNoExiste(usuario : Usuario) : Long
+    fun insertarUsuario(usuario: Usuario): Long
     fun leerUsuariosOrdenadosPorNombre() : List<Usuario>
     fun leerUsuarioPorEmail(email: String) : Usuario
     fun buscarUsuarios(texto: String): List<Usuario>

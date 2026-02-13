@@ -30,6 +30,25 @@ class UsuarioDAOImpl(
     }
 }
 
+    override fun insertarUsuario(usuario: Usuario): Long {
+
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            // put("nombre" , usuario.nombre)
+            // put("email", usuario.email)
+            put(UsuariosSQLiteHelper.COLUMN_NOMBRE , usuario.nombre)
+            put(UsuariosSQLiteHelper.COLUMN_EMAIL, usuario.email)
+        }
+        val resultado = db.insert(
+            UsuariosSQLiteHelper.TABLE_NAME,
+            null,
+            values
+        )
+
+        db.close()
+        return resultado
+    }
+
     override fun leerUsuariosOrdenadosPorNombre(): List<Usuario> {
         val listaUsuarios = mutableListOf<Usuario>()
         val db= dbHelper.readableDatabase

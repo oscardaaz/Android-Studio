@@ -327,6 +327,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    // Log.e (level.error) o Log.d (level:debug)
     private fun insertarLogcat (mensaje:String){
         Log.e(
             "MainActivity",
@@ -334,7 +335,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun toast(mensaje : String){
+    private fun mostrarToast(mensaje : String){
         Toast.makeText(
             this,
             mensaje,
