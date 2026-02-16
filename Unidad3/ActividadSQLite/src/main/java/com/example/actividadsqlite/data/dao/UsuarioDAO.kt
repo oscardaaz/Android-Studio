@@ -8,6 +8,7 @@ interface UsuarioDAO {
     fun insertarUsuario(usuario: Usuario): Long
     fun leerUsuariosOrdenadosPorNombre() : List<Usuario>
     fun leerUsuarioPorEmail(email: String) : Usuario
+    fun leerUsuarioPorId(id: Int) : Usuario
     fun buscarUsuarios(texto: String): List<Usuario>
     fun actualizarNombre(id: Int, nuevoNombre: String): Int
     fun actualizarUsuario(usuario: Usuario) : Int

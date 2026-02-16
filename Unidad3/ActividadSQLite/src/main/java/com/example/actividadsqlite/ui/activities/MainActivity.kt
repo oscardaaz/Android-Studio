@@ -73,7 +73,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun manejarConsulta() {
         limpiarErrores()
-        val idEmail = binding.textInputLayoutEmail.editText?.text.toString().trim()
+//        val idEmail = binding.textInputLayoutEmail.editText?.text.toString().trim()
+
+        val idEmail = binding.textInputLayoutID.editText?.text.toString().trim()
+        val id = binding.textInputLayoutID.editText?.text.toString().trim()
 
         //CASO 1
         if (idEmail.isEmpty()) {
@@ -102,18 +105,18 @@ class MainActivity : AppCompatActivity() {
         // CASO 2, id introducido.
         if (!idEmail.isEmpty()) {
 
-            if (operaciones.existeUsuario(idEmail)) {
-                val usuario = operaciones.leerUsuarioPorEmail(idEmail).toString()
+            if (operaciones.existeUsuarioPorId(id.toInt())) {
+                val usuario = operaciones.leerUsuarioPorId(idEmail.toInt())
 
-                mostrarMensaje("Mostrando usuario con email: $idEmail")
+                mostrarMensaje("Mostrando usuario con id: $id")
                 val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("DATOS", usuario)
+                intent.putExtra("DATOS", usuario.toString())
                 startActivity(intent)
 
             }else{
                 mostrarMensaje("El usuario con id: $idEmail ,no existe")
                 val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("DATOS", "El usuario con email: $idEmail ,no existe")
+                intent.putExtra("DATOS", "El usuario con id: $id ,no existe")
                 startActivity(intent)
 
             }
