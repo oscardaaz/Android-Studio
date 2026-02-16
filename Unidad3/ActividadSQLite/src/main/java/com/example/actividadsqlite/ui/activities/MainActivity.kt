@@ -166,28 +166,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarEliminacion() {
-        val dominio = binding.textInputLayoutEmail.editText?.text.toString().trim()
+        limpiarErrores()
+//        val dominio = binding.textInputLayoutEmail.editText?.text.toString().trim()
         val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
 
 //        // Comprobar si esta vacio
         if (idTexto.isEmpty()) {
             mostrarMensaje("Introduce id para eliminar")
+            binding.textInputLayoutID.error = "El campo es obligatorio para eliminar"
             return
         }
 
         // Si no esta vacio, comprobamos que sea un número valido.
-        val email = idTexto
-        if (email == null) {
-            mostrarMensaje("Iemail tiene que ser un nº ")
+        val id = idTexto.toIntOrNull()
+        if (id == null) {
+            mostrarMensaje("El id tiene que ser un nº valido")
+            binding.textInputLayoutID.error = "El campo tiene que ser un n` valido"
             return
         }
 
-        val filasEliminadas = operaciones.borrarUsuario(email)
+
+        val filasEliminadas = operaciones.borrarUsuarioPorID(idTexto.toInt())
         if (filasEliminadas > 0) {
             mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
         } else {
             mostrarMensaje("No se ha podido eliminar")
         }
+
+        limpiarErrores()
+        limpiarCampos()
 
 //        val filasEliminadas = operaciones.borrarUsuariosPorDominio(dominio)
 //        mostrarMensaje("Eliminacion correcta")
@@ -204,48 +211,50 @@ class MainActivity : AppCompatActivity() {
     }
     private fun manejarActualizacion() {
         val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
-        val id = idTexto.toInt()
-        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
-//
-//        // Comprobar si esta vacio
-//        if (idTexto.isEmpty()) {
-//            mostrarMensaje("Introduce id para actualizar")
-//            return
-//        }
-//
-//        // Si no esta vacio, comprobamos que sea un número valido.
-//        val id = idTexto.toIntOrNull()
-//        if (id == null) {
-//            mostrarMensaje("ID tiene que ser un nº ")
-//            return
-//        }
+//        val id = idTexto.toInt()
 //        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
-//        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
-//
-//        // TODO: Validar campos nombre e email.
-//        val usuarioActualizado = Usuario(
-//            id = id,
-//            nombre,
-//            email = email
-//        )
-//        val filasActualizadas = operaciones.actualizarUsuario(usuarioActualizado)
-//        if (filasActualizadas > 0) {
-//            mostrarMensaje("Actualizacion correcta"); limpiarCampos(); actualizarListaUsuarios()
-//        } else {
-//            mostrarMensaje("No se ha podido actualizar")
-//        }
-        // Actualizar nombre por id
+
+        // Comprobar si esta vacio
+        if (idTexto.isEmpty()) {
+            mostrarMensaje("Introduce id para actualizar")
+            return
+        }
+
+        // Si no esta vacio, comprobamos que sea un número valido.
+        val id = idTexto.toIntOrNull()
+        if (id == null) {
+            mostrarMensaje("ID tiene que ser un nº ")
+            return
+        }
+        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
+        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+
+        // TODO: Validar campos nombre e email.
+        val usuarioActualizado = Usuario(
+            id = id,
+            nombre,
+            email = email
+        )
+        val filasActualizadas = operaciones.actualizarUsuario(usuarioActualizado)
+        if (filasActualizadas > 0) {
+            mostrarMensaje("Actualizacion correcta"); limpiarCampos(); actualizarListaUsuarios()
+        } else {
+            mostrarMensaje("No se ha podido actualizar")
+        }
+
+
+//         Actualizar nombre por id
 //        operaciones.actualizarNombre(id,nombre)
 //        actualizarListaUsuarios()
-
-        //Actualizar email si no existe otro email igual
-       val actualizarEmail = operaciones.actualizarEmailSiDisponible(19,"nuevoEemail.com")
-        if (actualizarEmail){
-            mostrarMensaje("El usuario ha sido actualizado correctamente")
-            actualizarListaUsuarios()
-        }else {
-            mostrarMensaje("No se ha podido actualizar ese usuario")
-        }
+//
+//        //Actualizar email si no existe otro email igual
+//       val actualizarEmail = operaciones.actualizarEmailSiDisponible(19,"nuevoEemail.com")
+//        if (actualizarEmail){
+//            mostrarMensaje("El usuario ha sido actualizado correctamente")
+//            actualizarListaUsuarios()
+//        }else {
+//            mostrarMensaje("No se ha podido actualizar ese usuario")
+//        }
 
     }
 

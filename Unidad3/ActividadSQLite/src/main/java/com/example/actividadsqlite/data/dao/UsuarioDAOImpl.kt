@@ -215,6 +215,22 @@ class UsuarioDAOImpl(
         return filasBorradas
     }
 
+    override fun borrarUsuarioPorID(id: Int): Int {
+        if (!existeUsuarioPorId(id)) return 0
+
+        val db = dbHelper.writableDatabase
+
+        val filasBorradas = db.delete (
+            UsuariosSQLiteHelper.TABLE_NAME,
+            "${UsuariosSQLiteHelper.COLUMN_ID} = ?",
+            arrayOf(id.toString())
+        )
+
+        //DELETE * FROM usuarios WHERE id = ?
+        db.close()
+        return filasBorradas
+    }
+
     override fun borrarUsuariosPorDominio(dominio: String): Int {
 
         val db = dbHelper.writableDatabase

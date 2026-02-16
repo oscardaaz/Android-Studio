@@ -13,6 +13,8 @@ interface UsuarioDAO {
     fun actualizarUsuario(usuario: Usuario) : Int
     fun actualizarEmailSiDisponible(id: Int, nuevoEmail: String): Boolean
     fun borrarUsuario(email : String) : Int
+
+    fun borrarUsuarioPorID(id : Int) : Int
     fun borrarUsuariosPorDominio(dominio: String): Int
 
     fun borrarTodosLosUsuarios(): Int
