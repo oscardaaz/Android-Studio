@@ -5,21 +5,10 @@
     <item
         android:id="@+id/action_insertar"
         android:title="Insertar"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_actualizar"
-        android:title="Actualizar"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_add"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_consultar"
-        android:title="Consultar"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_eliminar"
-        android:title="Eliminar"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_eliminarAll"
-        android:title="EliminarAll"
+        android:title="CONSULTAR"
         app:showAsAction="never" />
 </menu>

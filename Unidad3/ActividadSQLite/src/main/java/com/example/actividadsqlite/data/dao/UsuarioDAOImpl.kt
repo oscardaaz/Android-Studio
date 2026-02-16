@@ -121,7 +121,7 @@ class UsuarioDAOImpl(
 
     override fun actualizarUsuario(usuario: Usuario): Int {
 
-        if (!existeUsuario(usuario.email)) return 0
+        if (existeUsuarioPorId(usuario.id!!)) return 0
 
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {

@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { item ->
 
             when (item.itemId){
+
                  R.id.action_insertar -> {
                     manejarInsercion()
                     true
@@ -51,26 +52,12 @@ class MainActivity : AppCompatActivity() {
                     manejarConsulta()
                     true
                 }
-                R.id.action_actualizar -> {
-                    manejarActualizacion()
-                    true
-                }
-                R.id.action_eliminar -> {
-                    manejarEliminacion()
-                    true
-                }
-                R.id.action_eliminarAll -> {
-                    borrarTodosLosUsuarios()
-                    true
-                }
-
                 else -> false
             }
 
         }
 
         configurarListeners()
-
         actualizarListaUsuarios()
 
     } // Fin del onCreate
@@ -85,6 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manejarConsulta() {
+        limpiarErrores()
         val idEmail = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
         //CASO 1
@@ -121,16 +109,17 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, SecondActivity::class.java)
                 intent.putExtra("DATOS", usuario)
                 startActivity(intent)
-                return
+
             }else{
                 mostrarMensaje("El usuario con id: $idEmail ,no existe")
                 val intent = Intent(this, SecondActivity::class.java)
                 intent.putExtra("DATOS", "El usuario con email: $idEmail ,no existe")
                 startActivity(intent)
-                return
+
             }
 
-
+            limpiarFocus()
+            limpiarCampos()
         }
 
         //CASO 2
@@ -185,12 +174,13 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-
         val filasEliminadas = operaciones.borrarUsuarioPorID(idTexto.toInt())
         if (filasEliminadas > 0) {
-            mostrarMensaje("Eliminación correcta"); limpiarCampos(); actualizarListaUsuarios()
+            mostrarMensaje("Eliminación correcta del usuario $id")
+            limpiarCampos()
+            actualizarListaUsuarios()
         } else {
-            mostrarMensaje("No se ha podido eliminar")
+            mostrarMensaje("El usuario con id: $id no existe")
         }
 
         limpiarErrores()
@@ -210,36 +200,56 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun manejarActualizacion() {
-        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
-//        val id = idTexto.toInt()
-//        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
+        limpiarErrores()
 
+        val idTexto = binding.textInputLayoutID.editText?.text.toString().trim()
+        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
+        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+        val validarEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+        var error = false
         // Comprobar si esta vacio
-        if (idTexto.isEmpty()) {
-            mostrarMensaje("Introduce id para actualizar")
+        if (idTexto.isEmpty() || nombre.isEmpty() || email.isEmpty() || idTexto.toIntOrNull() == null) {
+            mostrarMensaje("Introduce los campos obligatorios")
+            if (idTexto.isEmpty()) binding.textInputLayoutID.error = "El id es obligatorio para actualizar"
+            if (nombre.isEmpty()) binding.textInputLayoutNombre.error = "El nombre es obligatorio para actualizar"
+            if (email.isEmpty()) binding.textInputLayoutEmail.error = "El email es obligatorio para actualizar"
+            if  (!idTexto.isEmpty() && idTexto.toIntOrNull() == null) {
+                binding.textInputLayoutID.error = "El id tiene que ser un nº valido"
+            }
+            if (!email.isEmpty() && !validarEmail) {
+                mostrarMensaje("El email no tiene el formato correcto")
+                binding.textInputLayoutEmail.error = "Estructura no valida, prueba: 'email@dominio.com' "
+
+            }
             return
         }
 
         // Si no esta vacio, comprobamos que sea un número valido.
-        val id = idTexto.toIntOrNull()
-        if (id == null) {
-            mostrarMensaje("ID tiene que ser un nº ")
-            return
-        }
-        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
-        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+//        val id = idTexto.toIntOrNull()
+//        if (id == null) {
+//            mostrarMensaje("ID tiene que ser un nº ")
+//            binding.textInputLayoutID.error = "El id tiene que ser un nº valido"
+//            error = true
+//        }
+
+
+//        val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
+//        val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
 
         // TODO: Validar campos nombre e email.
         val usuarioActualizado = Usuario(
-            id = id,
-            nombre,
+            id = idTexto.toInt(),
+            nombre = nombre,
             email = email
         )
         val filasActualizadas = operaciones.actualizarUsuario(usuarioActualizado)
         if (filasActualizadas > 0) {
-            mostrarMensaje("Actualizacion correcta"); limpiarCampos(); actualizarListaUsuarios()
+            mostrarMensaje("Actualizacion del usuario con id: $idTexto correcta")
+
         } else {
-            mostrarMensaje("No se ha podido actualizar")
+            mostrarMensaje("El usuario con id: $idTexto no existe en la BBDD")
+            Log.d("MainActivity","El usuario con id: $idTexto no existe")
         }
 
 
@@ -256,11 +266,18 @@ class MainActivity : AppCompatActivity() {
 //            mostrarMensaje("No se ha podido actualizar ese usuario")
 //        }
 
+        actualizarListaUsuarios()
+        limpiarErrores()
+        limpiarCampos()
+        limpiarFocus()
     }
 
     private fun manejarInsercion() {
+        limpiarErrores()
+
         val nombre = binding.textInputLayoutNombre.editText?.text.toString().trim()
         val email = binding.textInputLayoutEmail.editText?.text.toString().trim()
+        val validarEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
         if (operaciones.existeUsuario(email)) {
             mostrarMensaje("El usuario ya esta registrado con el email: $email")
@@ -277,6 +294,11 @@ class MainActivity : AppCompatActivity() {
             }
             return
         }
+        if (!validarEmail) {
+            mostrarMensaje("El email no tiene el formato correcto")
+            binding.textInputLayoutEmail.error = "Estructura no valida, prueba: 'email@dominio.com' "
+            return
+        }
 
         val usuario = Usuario(
             nombre = nombre,
@@ -288,16 +310,21 @@ class MainActivity : AppCompatActivity() {
             mostrarMensaje("Usuario insertado con id: $idGenerado")
             binding.textInputLayoutEmail.error = ""
             binding.textInputLayoutNombre.error = ""
-            limpiarCampos()
             actualizarListaUsuarios()
         } else {
             mostrarMensaje("Error al insertar usuario")
-            limpiarCampos()
         }
-
+        limpiarErrores()
+        limpiarCampos()
+        limpiarFocus()
 
     }
 
+    private fun limpiarFocus(){
+        binding.textInputLayoutID.clearFocus()
+        binding.textInputLayoutNombre.clearFocus()
+        binding.textInputLayoutEmail.clearFocus()
+    }
     private fun limpiarCampos() {
         binding.textInputLayoutID.editText?.setText("")
         binding.textInputLayoutNombre.editText?.setText("")
@@ -325,11 +352,6 @@ class MainActivity : AppCompatActivity() {
                     manejarConsulta()
                     true
                 }
-                R.id.action_eliminar -> {
-                    manejarEliminacion()
-                    true
-                }
-
                 else -> false
             }
 
