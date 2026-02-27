@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_audio_player/models/Song.dart';
+import 'package:flutter_audio_player/components/my_drawer.dart';
+import 'package:flutter_audio_player/models/playlist_provider.dart';
+import 'package:flutter_audio_player/models/song.dart';
 import 'package:flutter_audio_player/pages/song_page.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-
-import '../models/playlist_provider.dart';
 
 /// Clase HomePage
 ///
@@ -49,9 +48,7 @@ class _HomePageState extends State<HomePage> {
     // - Navega a la página de la canción seleccionada (`SongPage`)
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => const SongPage(),
-      ),
+      MaterialPageRoute(builder: (context) => const SongPage()),
     );
   }
 
@@ -61,43 +58,41 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .surface,
+      backgroundColor: Theme.of(context).colorScheme.surface,
 
-        /// AppBar (barra superior) con el título "PLAYLIST"
-        appBar: AppBar(
-          title: const Text("P L A Y L I S T"),
-        ),
+      /// AppBar (barra superior) con el título "PLAYLIST"
+      appBar: AppBar(title: const Text("P L A Y L I S T")),
 
-        /// Consumer de `PlaylistProvider`
-        /// - Escucha los cambios en la playlist y reconstruye la lista cuando cambian los datos.
-        body: Consumer<PlaylistProvider>(
-        builder: (context, value, child)
-    {
-      /// - Obtenemos la lista de canciones
-      final List<Song> playlist = value.playlist.cast<Song>();
+      /// Consumer de `PlaylistProvider`
+      /// - Escucha los cambios en la playlist y reconstruye la lista cuando cambian los datos.
+      body: Consumer<PlaylistProvider>(
+        builder: (context, value, child) {
+          /// - Obtenemos la lista de canciones
+          final List<Song> playlist = value.playlist.cast<Song>();
 
-      /// - Mostramos la lista de canciones en un `ListView`
-      return ListView.builder(
-        itemCount: playlist.length, // Número de canciones en la lista
-        itemBuilder: (context, index) {
-          /// - Obtenemos la canción individual en la posición `index`
-          final Song song = playlist[index];
+          /// - Mostramos la lista de canciones en un `ListView`
+          return ListView.builder(
+            itemCount: playlist.length, // Número de canciones en la lista
+            itemBuilder: (context, index) {
+              /// - Obtenemos la canción individual en la posición `index`
+              final Song song = playlist[index];
 
-          /// - Mostramos cada canción como un `ListTile` (fila de lista)
-          return ListTile(
-            title: Text(song.songName), // Nombre de la canción
-            subtitle: Text(song.artistName), // Nombre del artista
-            leading: Image.asset(song.albumArtImagePath), // Imagen del álbum
-            onTap: () =>
-                goToSong(index), // Navegar a `SongPage` al tocar la canción
+              /// - Mostramos cada canción como un `ListTile` (fila de lista)
+              return ListTile(
+                title: Text(song.songName),
+                // Nombre de la canción
+                subtitle: Text(song.artistName),
+                // Nombre del artista
+                leading: Image.asset(song.albumArtImagePath),
+                // Imagen del álbum
+                onTap: () =>
+                    goToSong(index), // Navegar a `SongPage` al tocar la canción
+              );
+            },
           );
         },
-      );
-    },)
-    ,
+      ),
+      drawer: const MyDrawer(),
     );
   }
 }

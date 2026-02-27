@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // Oculta la etiqueta de "debug"
       home: const HomePage(), // Página de inicio de la aplicación
       //theme: , // Aquí se podría definir un tema personalizado
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   } // Fin metodo build
 } // Fin clase MyApp

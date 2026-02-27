@@ -15,42 +15,42 @@ import 'song.dart';
 /// - Escucha los cambios en la duración y el estado del reproductor de audio.
 /// - Notifica a los widgets cuando hay cambios en el estado de la reproducción.
 class PlaylistProvider extends ChangeNotifier {
-// Lista de canciones en la playlist.
+  // Lista de canciones en la playlist.
   final List<Song> _playlist = [
     // Canción 1
     Song(
-      songName: "So sick",
-      artistName: "Neyo",
-      albumArtImagePath: "assets/images/ne_yo.jpg",
+      songName: "Dear Rosemary",
+      artistName: "Foo Fighters",
+      albumArtImagePath: "assets/images/dear_rosemary.jpg",
       // Las imágenes, que utilizan Image.asset(), requieren la ruta completa desde assets/.
-      audioPath: "audio/so_sick.mp3",
+      audioPath: "audio/Dear_Rosemary.mp3",
       // En el caso de audio, AudioPlayer.play(AssetSource()), la ruta es relativa
       // a la carpeta assets/, por lo que no se necesita el prefijo "assets/".
     ),
     // Canción 2
     Song(
-      songName: "Fallin'",
-      artistName: "Alicia Keys",
-      albumArtImagePath: "assets/images/alicia_keys.jpg",
-      audioPath: "audio/alicia_keys_falling.mp3",
+      songName: "Ramble On",
+      artistName: "Led Zeppelin",
+      albumArtImagePath: "assets/images/ramble_on.jpg",
+      audioPath: "audio/Ramble_On.mp3",
     ),
     // Canción 3
     Song(
-      songName: "Baby",
-      artistName: "Justin Bieber",
-      albumArtImagePath: "assets/images/justin_bieber.jpg",
-      audioPath: "audio/justin_bieber_baby.mp3",
+      songName: "Stairway to Heaven",
+      artistName: "Led Zeppelin",
+      albumArtImagePath: "assets/images/stairway_to_heaven.jpg",
+      audioPath: "audio/Stairway_to_Heaven.mp3",
     ),
   ];
 
-// Índice de la canción que se está reproduciendo actualmente.
+  // Índice de la canción que se está reproduciendo actualmente.
   int? _currentSongIndex;
 
-// Getters para acceder a la lista de reproducción.
+  // Getters para acceder a la lista de reproducción.
   List<Song> get playlist => _playlist;
 
-// En Java sería algo así:
-/*
+  // En Java sería algo así:
+  /*
  public List<Song> getPlaylist() {
  return _playlist;
  }
@@ -59,14 +59,14 @@ class PlaylistProvider extends ChangeNotifier {
   // Getter para obtener el índice de la canción actual.
   int? get currentSongIndex => _currentSongIndex;
 
-// Getters para obtener el estado de la reproducción.
+  // Getters para obtener el estado de la reproducción.
   bool get isPlaying => _isPlaying;
 
   Duration get currentDuration => _currentDuration;
 
   Duration get totalDuration => _totalDuration;
 
-// Setter para actualizar el índice de la canción actual.
+  // Setter para actualizar el índice de la canción actual.
   set currentSongIndex(int? newIndex) {
     _currentSongIndex = newIndex;
     if (newIndex != null) {
@@ -77,22 +77,22 @@ class PlaylistProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-// ---------- C O N T R O L D E A U D I O -------------
+  // ---------- C O N T R O L D E A U D I O -------------
   /// Reproductor de audio de la app
   ///
   /// - Requiere la dependencia: `flutter pub add audioplayers`.
   /// - Permite reproducir, pausar, reanudar, avanzar, retroceder y detener canciones.
   final AudioPlayer _audioPlayer = AudioPlayer();
 
-// Variables privadas para la duración del audio.
-  Duration _currentDuration = Duration
-      .zero; // Duration.zero = Duración inicial 0
+  // Variables privadas para la duración del audio.
+  Duration _currentDuration =
+      Duration.zero; // Duration.zero = Duración inicial 0
   Duration _totalDuration = Duration.zero;
 
-// Indica si actualmente se está reproduciendo una canción.
+  // Indica si actualmente se está reproduciendo una canción.
   bool _isPlaying = false;
 
-// Constructor de la clase
+  // Constructor de la clase
   // Configura los listeners para escuchar cambios en la duración y el estado del
   // reproductor.
   PlaylistProvider() {
@@ -121,6 +121,15 @@ class PlaylistProvider extends ChangeNotifier {
   void resume() async {
     await _audioPlayer.resume();
     _isPlaying = true;
+    notifyListeners();
+  }
+
+  /// Parar la cancion al dar atras.
+  void stop() async {
+    await _audioPlayer.stop();
+    _isPlaying = false;
+    _currentDuration = Duration.zero;
+    _totalDuration = Duration.zero;
     notifyListeners();
   }
 
@@ -195,5 +204,6 @@ class PlaylistProvider extends ChangeNotifier {
       playNextSong();
     });
   }
-// ---------- F I N C O N T R O L D E A U D I O -------------
+
+  // ---------- F I N C O N T R O L D E A U D I O -------------
 } // Fin de la clase PlaylistProvider
