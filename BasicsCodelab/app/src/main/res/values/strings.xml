@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">BasicsCodelab</string>
+    <string name="app_name">Saludos JetPackCompose, Oscar</string>
+    <string name="mostrar_mas">Mostrar más</string>
+    <string name="mostrar_menos">Mostrar menos</string>
 </resources>
