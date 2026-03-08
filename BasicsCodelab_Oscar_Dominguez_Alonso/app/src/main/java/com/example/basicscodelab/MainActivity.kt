@@ -118,7 +118,7 @@ private fun Greeting(name: String, modifier: Modifier = Modifier) {
         CardContent(name)
     }
 }
-
+        // Gracias, Un saludo :)
 @Composable
 private fun CardContent(name: String) {
     // Con esto recordamos si la tarjeta está expandida o no.

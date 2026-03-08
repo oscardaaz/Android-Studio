@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BasicsCodelab"
+rootProject.name = "BasicsCodelab_Oscar_Dominguez_Alonso"
 include(":app")
